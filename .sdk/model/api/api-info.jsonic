@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/fisenkodv/dictum"
+      }
+      description: "This API provides access to a collection of inspiring expressions gathered throughout history. It enables users to retrieve quotes from various categories and authors, fostering motivation and reflection."
+      license: {
+        name: "MIT"
+        url: "https://github.com/fisenkodv/dictum/blob/master/LICENSE"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://quoterism.com/api"
+        }
+      ]
+      title: "Dictum API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

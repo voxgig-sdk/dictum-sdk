@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "quote": {
+      "QUOTE00": {
+        "author": "s32",
+        "category": "s33",
+        "id": "QUOTE00",
+        "source": "s35",
+        "text": "s36"
+      },
+      "QUOTE01": {
+        "author": "s64",
+        "category": "s65",
+        "id": "QUOTE01",
+        "source": "s67",
+        "text": "s68"
+      },
+      "QUOTE02": {
+        "author": "s96",
+        "category": "s97",
+        "id": "QUOTE02",
+        "source": "s99",
+        "text": "s9a"
+      }
+    }
+  },
+  "new": {
+    "quote": {
+      "quote_ref01": {
+        "author": "sc8",
+        "category": "sc9",
+        "source": "scb",
+        "text": "scc"
+      }
+    }
+  }
+}

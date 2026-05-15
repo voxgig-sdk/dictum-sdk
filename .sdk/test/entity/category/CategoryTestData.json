@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "category": {
+      "CATEGORY00": {
+        "category": [],
+        "total": "s15"
+      },
+      "CATEGORY01": {
+        "category": [],
+        "total": "s29"
+      },
+      "CATEGORY02": {
+        "category": [],
+        "total": "s3d"
+      }
+    }
+  },
+  "new": {
+    "category": {
+      "category_ref01": {
+        "category": [],
+        "total": "s51"
+      }
+    }
+  }
+}

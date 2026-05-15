@@ -1,0 +1,436 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dictum API",
+    "description": "This API provides access to a collection of inspiring expressions gathered throughout history. It enables users to retrieve quotes from various categories and authors, fostering motivation and reflection.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/fisenkodv/dictum"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/fisenkodv/dictum/blob/master/LICENSE"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://quoterism.com/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/quotes/random": {
+      "get": {
+        "summary": "Get a random quote",
+        "description": "Retrieves a random inspiring quote from the collection",
+        "operationId": "getRandomQuote",
+        "tags": [
+          "Quotes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a random quote",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                },
+                "example": {
+                  "id": "12345",
+                  "text": "The only way to do great work is to love what you do.",
+                  "author": "Steve Jobs",
+                  "category": "motivation"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotes": {
+      "get": {
+        "summary": "Get quotes",
+        "description": "Retrieves a list of quotes with optional filtering",
+        "operationId": "getQuotes",
+        "tags": [
+          "Quotes"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Filter quotes by author name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter quotes by category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of quotes to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of quotes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quotes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Quote"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of quotes available"
+                    },
+                    "page": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Number of quotes per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotes/{id}": {
+      "get": {
+        "summary": "Get quote by ID",
+        "description": "Retrieves a specific quote by its unique identifier",
+        "operationId": "getQuoteById",
+        "tags": [
+          "Quotes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of the quote",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with the requested quote",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Quote not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authors": {
+      "get": {
+        "summary": "Get authors",
+        "description": "Retrieves a list of authors available in the collection",
+        "operationId": "getAuthors",
+        "tags": [
+          "Authors"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of authors to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of authors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Author"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of authors available"
+                    },
+                    "page": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Number of authors per page"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Get categories",
+        "description": "Retrieves a list of available quote categories",
+        "operationId": "getCategories",
+        "tags": [
+          "Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a list of categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of categories"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the quote"
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content of the quote"
+          },
+          "author": {
+            "type": "string",
+            "description": "The author of the quote"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category or theme of the quote"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source or origin of the quote",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "author"
+        ]
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the author"
+          },
+          "quoteCount": {
+            "type": "integer",
+            "description": "Number of quotes by this author in the collection"
+          },
+          "bio": {
+            "type": "string",
+            "description": "Brief biography of the author",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name",
+          "quoteCount"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        },
+        "required": [
+          "error",
+          "status"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Quotes",
+      "description": "Operations related to quotes"
+    },
+    {
+      "name": "Authors",
+      "description": "Operations related to authors"
+    },
+    {
+      "name": "Categories",
+      "description": "Operations related to quote categories"
+    }
+  ],
+  "externalDocs": {
+    "description": "API Documentation",
+    "url": "https://www.quoterism.com/developer"
+  }
+}

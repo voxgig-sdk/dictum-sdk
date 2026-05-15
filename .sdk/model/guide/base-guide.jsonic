@@ -1,0 +1,33 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 5
+  metrics: count: method: 5
+
+  entity: author: {
+    path: "/authors": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: category: {
+    path: "/categories": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: quote: {
+    path: "/quotes": {
+      op: list: method: *GET
+    }
+    path: "/quotes/random": {
+      action: "random": {}
+      op: load: method: *GET
+    }
+    path: "/quotes/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+}

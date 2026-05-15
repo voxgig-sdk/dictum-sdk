@@ -1,0 +1,273 @@
+# Dictum Python SDK Reference
+
+Complete API reference for the Dictum Python SDK.
+
+
+## DictumSDK
+
+### Constructor
+
+```python
+from dictum_sdk import DictumSDK
+
+client = DictumSDK(options)
+```
+
+Create a new SDK client instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options` | `dict` | SDK configuration options. |
+| `options["apikey"]` | `str` | API key for authentication. |
+| `options["base"]` | `str` | Base URL for API requests. |
+| `options["prefix"]` | `str` | URL prefix appended after base. |
+| `options["suffix"]` | `str` | URL suffix appended after path. |
+| `options["headers"]` | `dict` | Custom headers for all requests. |
+| `options["feature"]` | `dict` | Feature configuration. |
+| `options["system"]` | `dict` | System overrides (e.g. custom fetch). |
+
+
+### Static Methods
+
+#### `DictumSDK.test(testopts=None, sdkopts=None)`
+
+Create a test client with mock features active. Both arguments may be `None`.
+
+```python
+client = DictumSDK.test()
+```
+
+
+### Instance Methods
+
+#### `Author(data=None)`
+
+Create a new `AuthorEntity` instance. Pass `None` for no initial data.
+
+#### `Category(data=None)`
+
+Create a new `CategoryEntity` instance. Pass `None` for no initial data.
+
+#### `Quote(data=None)`
+
+Create a new `QuoteEntity` instance. Pass `None` for no initial data.
+
+#### `options_map() -> dict`
+
+Return a deep copy of the current SDK options.
+
+#### `get_utility() -> Utility`
+
+Return a copy of the SDK utility object.
+
+#### `direct(fetchargs=None) -> tuple`
+
+Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `fetchargs["path"]` | `str` | URL path with optional `{param}` placeholders. |
+| `fetchargs["method"]` | `str` | HTTP method (default: `"GET"`). |
+| `fetchargs["params"]` | `dict` | Path parameter values. |
+| `fetchargs["query"]` | `dict` | Query string parameters. |
+| `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
+| `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
+
+**Returns:** `(result_dict, err)`
+
+#### `prepare(fetchargs=None) -> tuple`
+
+Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+
+
+---
+
+## AuthorEntity
+
+```python
+author = client.Author()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `bio` | ``$STRING`` | No |  |
+| `name` | ``$STRING`` | Yes |  |
+| `quote_count` | ``$INTEGER`` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl=None) -> tuple`
+
+List entities matching the given criteria. Returns an array.
+
+```python
+results, err = client.Author().list({})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `AuthorEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## CategoryEntity
+
+```python
+category = client.Category()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `category` | ``$ARRAY`` | No |  |
+| `total` | ``$INTEGER`` | No |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl=None) -> tuple`
+
+List entities matching the given criteria. Returns an array.
+
+```python
+results, err = client.Category().list({})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `CategoryEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## QuoteEntity
+
+```python
+quote = client.Quote()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `author` | ``$STRING`` | Yes |  |
+| `category` | ``$STRING`` | No |  |
+| `id` | ``$STRING`` | Yes |  |
+| `source` | ``$STRING`` | No |  |
+| `text` | ``$STRING`` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl=None) -> tuple`
+
+List entities matching the given criteria. Returns an array.
+
+```python
+results, err = client.Quote().list({})
+```
+
+#### `load(reqmatch, ctrl=None) -> tuple`
+
+Load a single entity matching the given criteria.
+
+```python
+result, err = client.Quote().load({"id": "quote_id"})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `QuoteEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## Features
+
+| Feature | Version | Description |
+| --- | --- | --- |
+| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
+
+
+Features are activated via the `feature` option:
+
+```python
+client = DictumSDK({
+    "feature": {
+        "test": {"active": True},
+    },
+})
+```
+
