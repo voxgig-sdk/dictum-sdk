@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dictum-sdk"
-	"github.com/voxgig-sdk/dictum-sdk/core"
+	sdk "github.com/voxgig-sdk/dictum-sdk/go"
+	"github.com/voxgig-sdk/dictum-sdk/go/core"
 )
 
 func TestCategoryDirect(t *testing.T) {

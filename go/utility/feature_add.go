@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/dictum-sdk/core"
+import "github.com/voxgig-sdk/dictum-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

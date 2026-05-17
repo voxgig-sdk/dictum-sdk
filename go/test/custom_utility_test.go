@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dictum-sdk"
+	sdk "github.com/voxgig-sdk/dictum-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

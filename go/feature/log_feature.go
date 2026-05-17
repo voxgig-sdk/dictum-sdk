@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/dictum-sdk/core"
+	"github.com/voxgig-sdk/dictum-sdk/go/core"
 )
 
 type LogFeature struct {

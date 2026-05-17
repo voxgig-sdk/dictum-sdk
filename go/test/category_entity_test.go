@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/dictum-sdk"
-	"github.com/voxgig-sdk/dictum-sdk/core"
+	sdk "github.com/voxgig-sdk/dictum-sdk/go"
+	"github.com/voxgig-sdk/dictum-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/dictum-sdk/go/utility/struct"
 )
 
 func TestCategoryEntity(t *testing.T) {

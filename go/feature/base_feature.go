@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/dictum-sdk/core"
+	"github.com/voxgig-sdk/dictum-sdk/go/core"
 )
 
 type BaseFeature struct {

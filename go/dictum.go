@@ -1,10 +1,10 @@
 package voxgigdictumsdk
 
 import (
-	"github.com/voxgig-sdk/dictum-sdk/core"
-	"github.com/voxgig-sdk/dictum-sdk/entity"
-	"github.com/voxgig-sdk/dictum-sdk/feature"
-	_ "github.com/voxgig-sdk/dictum-sdk/utility"
+	"github.com/voxgig-sdk/dictum-sdk/go/core"
+	"github.com/voxgig-sdk/dictum-sdk/go/entity"
+	"github.com/voxgig-sdk/dictum-sdk/go/feature"
+	_ "github.com/voxgig-sdk/dictum-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
