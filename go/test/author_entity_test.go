@@ -119,7 +119,6 @@ func authorBasicSetup(extra map[string]any) *entityTestSetup {
 		"DICTUM_TEST_AUTHOR_ENTID": idmap,
 		"DICTUM_TEST_LIVE":      "FALSE",
 		"DICTUM_TEST_EXPLAIN":   "FALSE",
-		"DICTUM_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DICTUM_TEST_AUTHOR_ENTID"])
@@ -130,7 +129,6 @@ func authorBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DICTUM_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DICTUM_APIKEY"],
 			},
 			extra,
 		})

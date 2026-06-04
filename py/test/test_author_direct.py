@@ -61,14 +61,12 @@ def _author_direct_setup(mockres):
     env = runner.env_override({
         "DICTUM_TEST_AUTHOR_ENTID": {},
         "DICTUM_TEST_LIVE": "FALSE",
-        "DICTUM_APIKEY": "NONE",
     })
 
     live = env.get("DICTUM_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("DICTUM_APIKEY"),
         }
         client = DictumSDK(merged_opts)
         return {

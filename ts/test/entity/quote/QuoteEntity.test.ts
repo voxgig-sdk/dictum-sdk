@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'DICTUM_TEST_QUOTE_ENTID': idmap,
     'DICTUM_TEST_LIVE': 'FALSE',
     'DICTUM_TEST_EXPLAIN': 'FALSE',
-    'DICTUM_APIKEY': 'NONE',
   })
 
   idmap = env['DICTUM_TEST_QUOTE_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DictumSDK(merge([
       {
-        apikey: env.DICTUM_APIKEY,
       },
       extra
     ]))
