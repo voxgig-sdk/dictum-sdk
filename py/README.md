@@ -10,7 +10,7 @@ The Python SDK for the Dictum API — an entity-oriented client following Python
 
 ## Install
 ```bash
-pip install dictum-sdk
+pip install voxgig-sdk-dictum
 ```
 
 Or install from source:

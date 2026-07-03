@@ -10,7 +10,7 @@ The PHP SDK for the Dictum API — an entity-oriented client using PHP conventio
 
 ## Install
 ```bash
-composer require voxgig/dictum-sdk
+composer require voxgig-sdk/dictum
 ```
 
 

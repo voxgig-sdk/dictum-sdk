@@ -10,7 +10,7 @@ The Lua SDK for the Dictum API — an entity-oriented client using Lua conventio
 
 ## Install
 ```bash
-luarocks install dictum-sdk
+luarocks install voxgig-sdk-dictum
 ```
 
 If the module is not yet published, add the source directory to

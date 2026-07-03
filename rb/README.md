@@ -10,13 +10,13 @@ The Ruby SDK for the Dictum API — an entity-oriented client using idiomatic Ru
 
 ## Install
 ```bash
-gem install dictum-sdk
+gem install voxgig-sdk-dictum
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "dictum-sdk"
+gem "voxgig-sdk-dictum"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The TypeScript SDK for the Dictum API — a type-safe, entity-oriented client wi
 
 ## Install
 ```bash
-npm install dictum
+npm install @voxgig-sdk/dictum
 ```
 ## Tutorial: your first API call
 
