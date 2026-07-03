@@ -1,22 +1,8 @@
 # Dictum SDK
 
-Browse a curated collection of historical quotes by author and category
+Dictum API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Dictum API
-
-Dictum is a thin SDK over the [Quoterism](https://quoterism.com) public quote API, a service that catalogues inspiring expressions from historical figures across categories such as wisdom, knowledge, self-awareness, justice and politics.
-
-What you get from the API:
-- `GET /api/quotes` — a paginated list of quotes with embedded author data (`page`, `limit` query params; `limit` 1-100, defaults to 12)
-- `GET /api/quotes/{id}` — a single quote by numeric id, or the special values `random` and `quote-of-the-day`
-- Quote objects include `id`, `text`, author details (`id`, `name`, `slug`, `imageUrl`) and a `createdAt` timestamp
-- List responses include pagination metadata: `page`, `limit`, `totalCount`, `totalPages`, `hasNextPage`, `hasPreviousPage`
-
-Authentication is required: send your key in the `X-API-Key` header. You can obtain a key by signing in at quoterism.com and requesting one from your profile.
-
-Documented rate limits are 30 requests/minute overall, 10 requests/minute on the quote detail endpoint, and 150 requests/day. The service has been reported as intermittently unavailable on third-party uptime checks, so build in retry and fallback logic.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install dictum-sdk
 luarocks install dictum-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DictumSDK } from 'dictum'
 
-const client = new DictumSDK({})
+const client = new DictumSDK({
+  apikey: process.env.DICTUM_APIKEY,
+})
 
 // List all authors
 const authors = await client.Author().list()
+console.log(authors.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Author** | The historical figure attributed to a quote, embedded in quote responses with `id`, `name`, `slug` and `imageUrl`. | `/authors` |
-| **Category** | A thematic grouping of quotes (e.g. wisdom, knowledge, justice) surfaced on the Quoterism site; no dedicated endpoint is documented in the public developer page. | `/categories` |
-| **Quote** | An individual quotation with text, author reference and creation timestamp, retrieved via `GET /api/quotes` (list) or `GET /api/quotes/{id}` (single, with special ids `random` and `quote-of-the-day`). | `/quotes` |
+| **Author** |  | `/authors` |
+| **Category** |  | `/categories` |
+| **Quote** |  | `/quotes` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from dictum_sdk import DictumSDK
 
-client = DictumSDK({})
+client = DictumSDK({
+    "apikey": os.environ.get("DICTUM_APIKEY"),
+})
 
 # List all authors
-authors, err = client.Author(None).list(None, None)
+authors, err = client.Author().list()
+print(authors)
 ```
 
 ### PHP
@@ -128,10 +120,13 @@ authors, err = client.Author(None).list(None, None)
 <?php
 require_once 'dictum_sdk.php';
 
-$client = new DictumSDK([]);
+$client = new DictumSDK([
+    "apikey" => getenv("DICTUM_APIKEY"),
+]);
 
 // List all authors
-[$authors, $err] = $client->Author(null)->list(null, null);
+[$authors, $err] = $client->Author()->list();
+print_r($authors);
 ```
 
 ### Golang
@@ -139,10 +134,13 @@ $client = new DictumSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/dictum-sdk/go"
 
-client := sdk.NewDictumSDK(map[string]any{})
+client := sdk.NewDictumSDK(map[string]any{
+    "apikey": os.Getenv("DICTUM_APIKEY"),
+})
 
 // List all authors
 authors, err := client.Author(nil).List(nil, nil)
+fmt.Println(authors)
 ```
 
 ### Ruby
@@ -150,10 +148,13 @@ authors, err := client.Author(nil).List(nil, nil)
 ```ruby
 require_relative "Dictum_sdk"
 
-client = DictumSDK.new({})
+client = DictumSDK.new({
+  "apikey" => ENV["DICTUM_APIKEY"],
+})
 
 # List all authors
-authors, err = client.Author(nil).list(nil, nil)
+authors, err = client.Author().list
+puts authors
 ```
 
 ### Lua
@@ -161,10 +162,13 @@ authors, err = client.Author(nil).list(nil, nil)
 ```lua
 local sdk = require("dictum_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DICTUM_APIKEY"),
+})
 
 -- List all authors
-local authors, err = client:Author(nil):list(nil, nil)
+local authors, err = client:Author():list()
+print(authors)
 ```
 
 ## Unit testing in offline mode
@@ -183,25 +187,21 @@ const result = await client.Author().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DictumSDK.test(None, None)
-result, err = client.Author(None).load(
-    {"id": "test01"}, None
-)
+client = DictumSDK.test()
+result, err = client.Author().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DictumSDK::test(null, null);
-[$result, $err] = $client->Author(null)->load(
-    ["id" => "test01"], null
-);
+$client = DictumSDK::test();
+[$result, $err] = $client->Author()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Author(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -210,19 +210,15 @@ result, err := client.Author(nil).Load(
 ### Ruby
 
 ```ruby
-client = DictumSDK.test(nil, nil)
-result, err = client.Author(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DictumSDK.test
+result, err = client.Author().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Author(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Author():load({ id = "test01" })
 ```
 
 ## How it works
@@ -326,16 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Dictum API
-
-- Upstream: [https://quoterism.com](https://quoterism.com)
-- API docs: [https://quoterism.com/developer](https://quoterism.com/developer)
-
-- The API documentation does not publish an explicit licence for the quote data
-- Content is marked Copyright Quoterism on the site
-- Check the [developer page](https://quoterism.com/developer) and contact the operator before redistributing data
-- The `license` field in this SDK's metadata refers to the SDK code, not the upstream data
 
 ---
 

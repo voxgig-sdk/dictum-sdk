@@ -116,12 +116,14 @@ def quote_direct_setup(mockres)
   env = Runner.env_override({
     "DICTUM_TEST_QUOTE_ENTID" => {},
     "DICTUM_TEST_LIVE" => "FALSE",
+    "DICTUM_APIKEY" => "NONE",
   })
 
   live = env["DICTUM_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["DICTUM_APIKEY"],
     }
     client = DictumSDK.new(merged_opts)
     return {

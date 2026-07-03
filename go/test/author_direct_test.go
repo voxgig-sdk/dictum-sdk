@@ -93,12 +93,14 @@ func authorDirectSetup(mockres any) *authorDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DICTUM_TEST_AUTHOR_ENTID": map[string]any{},
 		"DICTUM_TEST_LIVE":    "FALSE",
+		"DICTUM_APIKEY":       "NONE",
 	})
 
 	live := env["DICTUM_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DICTUM_APIKEY"],
 		}
 		client := sdk.NewDictumSDK(mergedOpts)
 

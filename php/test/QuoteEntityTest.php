@@ -96,6 +96,7 @@ function quote_basic_setup($extra)
         "DICTUM_TEST_QUOTE_ENTID" => $idmap,
         "DICTUM_TEST_LIVE" => "FALSE",
         "DICTUM_TEST_EXPLAIN" => "FALSE",
+        "DICTUM_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,6 +108,7 @@ function quote_basic_setup($extra)
     if ($env["DICTUM_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["DICTUM_APIKEY"],
             ],
             $extra ?? [],
         ]);

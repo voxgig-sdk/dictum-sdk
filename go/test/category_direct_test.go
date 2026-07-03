@@ -93,12 +93,14 @@ func categoryDirectSetup(mockres any) *categoryDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DICTUM_TEST_CATEGORY_ENTID": map[string]any{},
 		"DICTUM_TEST_LIVE":    "FALSE",
+		"DICTUM_APIKEY":       "NONE",
 	})
 
 	live := env["DICTUM_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DICTUM_APIKEY"],
 		}
 		client := sdk.NewDictumSDK(mergedOpts)
 

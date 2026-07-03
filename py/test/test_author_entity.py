@@ -92,6 +92,7 @@ def _author_basic_setup(extra):
         "DICTUM_TEST_AUTHOR_ENTID": idmap,
         "DICTUM_TEST_LIVE": "FALSE",
         "DICTUM_TEST_EXPLAIN": "FALSE",
+        "DICTUM_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _author_basic_setup(extra):
     if env.get("DICTUM_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("DICTUM_APIKEY"),
             },
             extra or {},
         ])
