@@ -102,7 +102,6 @@ function quote_basic_setup(extra)
     ["DICTUM_TEST_QUOTE_ENTID"] = idmap,
     ["DICTUM_TEST_LIVE"] = "FALSE",
     ["DICTUM_TEST_EXPLAIN"] = "FALSE",
-    ["DICTUM_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -114,7 +113,6 @@ function quote_basic_setup(extra)
   if env["DICTUM_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DICTUM_APIKEY"],
       },
       extra or {},
     })

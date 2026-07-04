@@ -20,9 +20,6 @@ class DictumConfig
             ],
             "options" => [
                 "base" => "https://quoterism.com/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -279,6 +276,7 @@ class DictumConfig
                         'orig' => 'id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

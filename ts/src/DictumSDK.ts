@@ -4,6 +4,8 @@ import { AuthorEntity } from './entity/AuthorEntity'
 import { CategoryEntity } from './entity/CategoryEntity'
 import { QuoteEntity } from './entity/QuoteEntity'
 
+export type * from './DictumTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class DictumSDK {
 
 
 
+  _author?: AuthorEntity
+
+  // Idiomatic facade: `client.author.list()` / `client.author.load({ id })`.
+  get author(): AuthorEntity {
+    return (this._author ??= new AuthorEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.author` instead. */
   Author(data?: any) {
     const self = this
     return new AuthorEntity(self,data)
   }
 
 
+  _category?: CategoryEntity
+
+  // Idiomatic facade: `client.category.list()` / `client.category.load({ id })`.
+  get category(): CategoryEntity {
+    return (this._category ??= new CategoryEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.category` instead. */
   Category(data?: any) {
     const self = this
     return new CategoryEntity(self,data)
   }
 
 
+  _quote?: QuoteEntity
+
+  // Idiomatic facade: `client.quote.list()` / `client.quote.load({ id })`.
+  get quote(): QuoteEntity {
+    return (this._quote ??= new QuoteEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.quote` instead. */
   Quote(data?: any) {
     const self = this
     return new QuoteEntity(self,data)

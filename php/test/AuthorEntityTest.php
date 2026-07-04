@@ -50,8 +50,7 @@ class AuthorEntityTest extends TestCase
         $author_ref01_ent = $client->Author(null);
         $author_ref01_match = [];
 
-        [$author_ref01_list_result, $err] = $author_ref01_ent->list($author_ref01_match, null);
-        $this->assertNull($err);
+        $author_ref01_list_result = $author_ref01_ent->list($author_ref01_match, null);
         $this->assertIsArray($author_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function author_basic_setup($extra)
         "DICTUM_TEST_AUTHOR_ENTID" => $idmap,
         "DICTUM_TEST_LIVE" => "FALSE",
         "DICTUM_TEST_EXPLAIN" => "FALSE",
-        "DICTUM_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function author_basic_setup($extra)
     if ($env["DICTUM_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DICTUM_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -144,16 +144,23 @@ class DictumSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DictumSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class DictumSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def author(self):
+        """Idiomatic facade: client.author.list() / client.author.load({"id": ...})."""
+        from entity.author_entity import AuthorEntity
+        cached = getattr(self, "_author", None)
+        if cached is None:
+            cached = AuthorEntity(self, None)
+            self._author = cached
+        return cached
 
     def Author(self, data=None):
+        # Deprecated: use client.author instead.
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
+    @property
+    def category(self):
+        """Idiomatic facade: client.category.list() / client.category.load({"id": ...})."""
+        from entity.category_entity import CategoryEntity
+        cached = getattr(self, "_category", None)
+        if cached is None:
+            cached = CategoryEntity(self, None)
+            self._category = cached
+        return cached
+
     def Category(self, data=None):
+        # Deprecated: use client.category instead.
         from entity.category_entity import CategoryEntity
         return CategoryEntity(self, data)
 
 
+    @property
+    def quote(self):
+        """Idiomatic facade: client.quote.list() / client.quote.load({"id": ...})."""
+        from entity.quote_entity import QuoteEntity
+        cached = getattr(self, "_quote", None)
+        if cached is None:
+            cached = QuoteEntity(self, None)
+            self._quote = cached
+        return cached
+
     def Quote(self, data=None):
+        # Deprecated: use client.quote instead.
         from entity.quote_entity import QuoteEntity
         return QuoteEntity(self, data)
 

@@ -50,8 +50,7 @@ class TestAuthorEntity:
         author_ref01_ent = client.Author(None)
         author_ref01_match = {}
 
-        author_ref01_list_result, err = author_ref01_ent.list(author_ref01_match, None)
-        assert err is None
+        author_ref01_list_result = author_ref01_ent.list(author_ref01_match, None)
         assert isinstance(author_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _author_basic_setup(extra):
         "DICTUM_TEST_AUTHOR_ENTID": idmap,
         "DICTUM_TEST_LIVE": "FALSE",
         "DICTUM_TEST_EXPLAIN": "FALSE",
-        "DICTUM_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _author_basic_setup(extra):
     if env.get("DICTUM_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DICTUM_APIKEY"),
             },
             extra or {},
         ])

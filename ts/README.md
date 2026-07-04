@@ -9,9 +9,12 @@ The TypeScript SDK for the Dictum API — a type-safe, entity-oriented client wi
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/dictum
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/dictum-sdk/releases](https://github.com/voxgig-sdk/dictum-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DictumSDK } from 'dictum'
+import { DictumSDK } from '@voxgig-sdk/dictum'
 
-const client = new DictumSDK({
-  apikey: process.env.DICTUM_APIKEY,
-})
+const client = new DictumSDK()
 ```
 
 ### 2. List authors
 
 ```ts
-const result = await client.Author().list()
+const result = await client.author.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DictumSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.author.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DictumSDK({ apikey: '...' })
+const client = new DictumSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.author
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new DictumSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DICTUM_TEST_LIVE=TRUE
-DICTUM_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new DictumSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new DictumSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -297,7 +294,7 @@ API path: `/quotes`
 
 ### Author
 
-Create an instance: `const author = client.Author()`
+Create an instance: `const author = client.author`
 
 #### Operations
 
@@ -316,13 +313,13 @@ Create an instance: `const author = client.Author()`
 #### Example: List
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.author.list()
 ```
 
 
 ### Category
 
-Create an instance: `const category = client.Category()`
+Create an instance: `const category = client.category`
 
 #### Operations
 
@@ -340,13 +337,13 @@ Create an instance: `const category = client.Category()`
 #### Example: List
 
 ```ts
-const categorys = await client.Category().list()
+const categorys = await client.category.list()
 ```
 
 
 ### Quote
 
-Create an instance: `const quote = client.Quote()`
+Create an instance: `const quote = client.quote`
 
 #### Operations
 
@@ -368,13 +365,13 @@ Create an instance: `const quote = client.Quote()`
 #### Example: Load
 
 ```ts
-const quote = await client.Quote().load({ id: 'quote_id' })
+const quote = await client.quote.load({ id: 'quote_id' })
 ```
 
 #### Example: List
 
 ```ts
-const quotes = await client.Quote().list()
+const quotes = await client.quote.list()
 ```
 
 
@@ -435,7 +432,7 @@ dictum/
 Import the SDK from the package root:
 
 ```ts
-import { DictumSDK } from 'dictum'
+import { DictumSDK } from '@voxgig-sdk/dictum'
 ```
 
 ### Entity state
@@ -445,11 +442,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const author = client.author
+await author.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// author.data() now returns the loaded author data
+// author.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

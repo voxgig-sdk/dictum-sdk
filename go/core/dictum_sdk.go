@@ -245,16 +245,25 @@ func (sdk *DictumSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Author returns a Author entity bound to this client.
+// Idiomatic usage: client.Author(nil).List(nil, nil) or
+// client.Author(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DictumSDK) Author(data map[string]any) DictumEntity {
 	return NewAuthorEntityFunc(sdk, data)
 }
 
 
+// Category returns a Category entity bound to this client.
+// Idiomatic usage: client.Category(nil).List(nil, nil) or
+// client.Category(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DictumSDK) Category(data map[string]any) DictumEntity {
 	return NewCategoryEntityFunc(sdk, data)
 }
 
 
+// Quote returns a Quote entity bound to this client.
+// Idiomatic usage: client.Quote(nil).List(nil, nil) or
+// client.Quote(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DictumSDK) Quote(data map[string]any) DictumEntity {
 	return NewQuoteEntityFunc(sdk, data)
 }

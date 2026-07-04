@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:author():list() / client:author():load({ id = ... })
+function DictumSDK:author(data)
+  local EntityMod = require("entity.author_entity")
+  if data == nil then
+    if self._author == nil then
+      self._author = EntityMod.new(self, nil)
+    end
+    return self._author
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:author() instead.
 function DictumSDK:Author(data)
   local EntityMod = require("entity.author_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:category():list() / client:category():load({ id = ... })
+function DictumSDK:category(data)
+  local EntityMod = require("entity.category_entity")
+  if data == nil then
+    if self._category == nil then
+      self._category = EntityMod.new(self, nil)
+    end
+    return self._category
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:category() instead.
 function DictumSDK:Category(data)
   local EntityMod = require("entity.category_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:quote():list() / client:quote():load({ id = ... })
+function DictumSDK:quote(data)
+  local EntityMod = require("entity.quote_entity")
+  if data == nil then
+    if self._quote == nil then
+      self._quote = EntityMod.new(self, nil)
+    end
+    return self._quote
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:quote() instead.
 function DictumSDK:Quote(data)
   local EntityMod = require("entity.quote_entity")
   return EntityMod.new(self, data)

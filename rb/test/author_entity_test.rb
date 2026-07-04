@@ -43,8 +43,7 @@ class AuthorEntityTest < Minitest::Test
     author_ref01_ent = client.Author(nil)
     author_ref01_match = {}
 
-    author_ref01_list_result, err = author_ref01_ent.list(author_ref01_match, nil)
-    assert_nil err
+    author_ref01_list_result = author_ref01_ent.list(author_ref01_match, nil)
     assert author_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def author_basic_setup(extra)
     "DICTUM_TEST_AUTHOR_ENTID" => idmap,
     "DICTUM_TEST_LIVE" => "FALSE",
     "DICTUM_TEST_EXPLAIN" => "FALSE",
-    "DICTUM_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def author_basic_setup(extra)
   if env["DICTUM_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DICTUM_APIKEY"],
       },
       extra || {},
     ])

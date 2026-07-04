@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AuthorListMatch
+---@param ctrl? table
+---@return Author[]
+---@return string? err
 function AuthorEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

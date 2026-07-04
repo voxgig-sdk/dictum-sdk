@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `DictumSDK.test()`.
 ## AuthorEntity
 
 ```ts
-const author = client.Author()
+const author = client.author
 ```
 
 ### Fields
@@ -152,7 +151,7 @@ const author = client.Author()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Author().list()
+const results = await client.author.list()
 ```
 
 ### Common Methods
@@ -186,7 +185,7 @@ Return a copy of the entity options.
 ## CategoryEntity
 
 ```ts
-const category = client.Category()
+const category = client.category
 ```
 
 ### Fields
@@ -203,7 +202,7 @@ const category = client.Category()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Category().list()
+const results = await client.category.list()
 ```
 
 ### Common Methods
@@ -237,7 +236,7 @@ Return a copy of the entity options.
 ## QuoteEntity
 
 ```ts
-const quote = client.Quote()
+const quote = client.quote
 ```
 
 ### Fields
@@ -257,7 +256,7 @@ const quote = client.Quote()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Quote().list()
+const results = await client.quote.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -265,7 +264,7 @@ const results = await client.Quote().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Quote().load({ id: 'quote_id' })
+const result = await client.quote.load({ id: 'quote_id' })
 ```
 
 ### Common Methods
