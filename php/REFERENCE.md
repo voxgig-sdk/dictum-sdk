@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AuthorEntity
 
 ```php
-$author = $client->author();
+$author = $client->Author();
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ $author = $client->author();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->author()->list([]);
+$results = $client->Author()->list([]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## CategoryEntity
 
 ```php
-$category = $client->category();
+$category = $client->Category();
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ $category = $client->category();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->category()->list([]);
+$results = $client->Category()->list([]);
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return the entity name.
 ## QuoteEntity
 
 ```php
-$quote = $client->quote();
+$quote = $client->Quote();
 ```
 
 ### Fields
@@ -220,7 +220,7 @@ $quote = $client->quote();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->quote()->list([]);
+$results = $client->Quote()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -228,7 +228,7 @@ $results = $client->quote()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->quote()->load(["id" => "quote_id"]);
+$result = $client->Quote()->load(["id" => "quote_id"]);
 ```
 
 ### Common Methods

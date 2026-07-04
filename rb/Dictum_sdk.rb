@@ -208,39 +208,21 @@ class DictumSDK
   end
 
 
-  # Idiomatic facade: client.author.list / client.author.load({ "id" => ... })
-  def author
-    require_relative 'entity/author_entity'
-    @author ||= AuthorEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.author instead.
+  # Canonical facade: client.Author.list / client.Author.load({ "id" => ... })
   def Author(data = nil)
     require_relative 'entity/author_entity'
     AuthorEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.category.list / client.category.load({ "id" => ... })
-  def category
-    require_relative 'entity/category_entity'
-    @category ||= CategoryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.category instead.
+  # Canonical facade: client.Category.list / client.Category.load({ "id" => ... })
   def Category(data = nil)
     require_relative 'entity/category_entity'
     CategoryEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.quote.list / client.quote.load({ "id" => ... })
-  def quote
-    require_relative 'entity/quote_entity'
-    @quote ||= QuoteEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.quote instead.
+  # Canonical facade: client.Quote.list / client.Quote.load({ "id" => ... })
   def Quote(data = nil)
     require_relative 'entity/quote_entity'
     QuoteEntity.new(self, data)

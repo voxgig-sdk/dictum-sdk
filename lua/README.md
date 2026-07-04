@@ -31,17 +31,17 @@ local sdk = require("dictum_sdk")
 local client = sdk.new()
 ```
 
-### 2. List authors
+### 2. List author records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:author():list()
+local authors, err = client:Author():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(authors) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:author():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Author():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Author` | `(data) -> AuthorEntity` | Create a Author entity instance. |
+| `Author` | `(data) -> AuthorEntity` | Create an Author entity instance. |
 | `Category` | `(data) -> CategoryEntity` | Create a Category entity instance. |
 | `Quote` | `(data) -> QuoteEntity` | Create a Quote entity instance. |
 
@@ -191,17 +191,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local author, err = client:Author():load({ id = "example_id" })
+    if err then error(err) end
+    -- author is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -249,7 +254,7 @@ API path: `/quotes`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `local author = client:Author(nil)`
 
 #### Operations
 
@@ -267,14 +272,14 @@ Create an instance: `const author = client.author`
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```lua
+local authors, err = client:Author():list()
 ```
 
 
 ### Category
 
-Create an instance: `const category = client.category`
+Create an instance: `local category = client:Category(nil)`
 
 #### Operations
 
@@ -291,14 +296,14 @@ Create an instance: `const category = client.category`
 
 #### Example: List
 
-```ts
-const categorys = await client.category.list()
+```lua
+local categorys, err = client:Category():list()
 ```
 
 
 ### Quote
 
-Create an instance: `const quote = client.quote`
+Create an instance: `local quote = client:Quote(nil)`
 
 #### Operations
 
@@ -319,14 +324,14 @@ Create an instance: `const quote = client.quote`
 
 #### Example: Load
 
-```ts
-const quote = await client.quote.load({ id: 'quote_id' })
+```lua
+local quote, err = client:Quote():load({ id = "quote_id" })
 ```
 
 #### Example: List
 
-```ts
-const quotes = await client.quote.list()
+```lua
+local quotes, err = client:Quote():list()
 ```
 
 
@@ -401,7 +406,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local author = client:author()
+local author = client:Author()
 author:load({ id = "example_id" })
 
 -- author:data_get() now returns the loaded author data

@@ -4,58 +4,61 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Author:
+class AuthorRequired(TypedDict):
     name: str
     quote_count: int
-    bio: Optional[str] = None
 
 
-@dataclass
-class AuthorListMatch:
-    bio: Optional[str] = None
-    name: Optional[str] = None
-    quote_count: Optional[int] = None
+class Author(AuthorRequired, total=False):
+    bio: str
 
 
-@dataclass
-class Category:
-    category: Optional[list] = None
-    total: Optional[int] = None
+class AuthorListMatch(TypedDict, total=False):
+    bio: str
+    name: str
+    quote_count: int
 
 
-@dataclass
-class CategoryListMatch:
-    category: Optional[list] = None
-    total: Optional[int] = None
+class Category(TypedDict, total=False):
+    category: list
+    total: int
 
 
-@dataclass
-class Quote:
+class CategoryListMatch(TypedDict, total=False):
+    category: list
+    total: int
+
+
+class QuoteRequired(TypedDict):
     author: str
     id: str
     text: str
-    category: Optional[str] = None
-    source: Optional[str] = None
 
 
-@dataclass
-class QuoteLoadMatch:
+class Quote(QuoteRequired, total=False):
+    category: str
+    source: str
+
+
+class QuoteLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class QuoteListMatch:
-    author: Optional[str] = None
-    category: Optional[str] = None
-    id: Optional[str] = None
-    source: Optional[str] = None
-    text: Optional[str] = None
-
+class QuoteListMatch(TypedDict, total=False):
+    author: str
+    category: str
+    id: str
+    source: str
+    text: str

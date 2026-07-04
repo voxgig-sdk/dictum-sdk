@@ -233,10 +233,10 @@ class DictumSDK
 
     private $_author = null;
 
-    // Idiomatic facade: $client->author()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Author() (PHP method
-    // names are case-insensitive).
-    public function author($data = null)
+    // Canonical facade: $client->Author()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->author()
+    // resolves here too.
+    public function Author($data = null)
     {
         require_once __DIR__ . '/entity/author_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DictumSDK
 
     private $_category = null;
 
-    // Idiomatic facade: $client->category()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Category() (PHP method
-    // names are case-insensitive).
-    public function category($data = null)
+    // Canonical facade: $client->Category()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->category()
+    // resolves here too.
+    public function Category($data = null)
     {
         require_once __DIR__ . '/entity/category_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DictumSDK
 
     private $_quote = null;
 
-    // Idiomatic facade: $client->quote()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Quote() (PHP method
-    // names are case-insensitive).
-    public function quote($data = null)
+    // Canonical facade: $client->Quote()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->quote()
+    // resolves here too.
+    public function Quote($data = null)
     {
         require_once __DIR__ . '/entity/quote_entity.php';
         if ($data === null) {

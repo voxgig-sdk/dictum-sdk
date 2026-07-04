@@ -28,16 +28,14 @@ require_relative "Dictum_sdk"
 client = DictumSDK.new
 ```
 
-### 2. List authors
+### 2. List author records
 
 ```ruby
 begin
-  result = client.author.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Author records — iterate directly.
+  authors = client.Author.list
+  authors.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DictumSDK.test
+client = DictumSDK.test({
+  "entity" => { "author" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.author.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+author = client.Author.load({ "id" => "test01" })
+puts author
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Author` | `(data) -> AuthorEntity` | Create a Author entity instance. |
+| `Author` | `(data) -> AuthorEntity` | Create an Author entity instance. |
 | `Category` | `(data) -> CategoryEntity` | Create a Category entity instance. |
 | `Quote` | `(data) -> QuoteEntity` | Create a Quote entity instance. |
 
@@ -252,7 +254,7 @@ API path: `/quotes`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `author = client.Author`
 
 #### Operations
 
@@ -270,14 +272,15 @@ Create an instance: `const author = client.author`
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```ruby
+# list returns an Array of Author records (raises on error).
+authors = client.Author.list
 ```
 
 
 ### Category
 
-Create an instance: `const category = client.category`
+Create an instance: `category = client.Category`
 
 #### Operations
 
@@ -294,14 +297,15 @@ Create an instance: `const category = client.category`
 
 #### Example: List
 
-```ts
-const categorys = await client.category.list()
+```ruby
+# list returns an Array of Category records (raises on error).
+categorys = client.Category.list
 ```
 
 
 ### Quote
 
-Create an instance: `const quote = client.quote`
+Create an instance: `quote = client.Quote`
 
 #### Operations
 
@@ -322,14 +326,16 @@ Create an instance: `const quote = client.quote`
 
 #### Example: Load
 
-```ts
-const quote = await client.quote.load({ id: 'quote_id' })
+```ruby
+# load returns the bare Quote record (raises on error).
+quote = client.Quote.load({ "id" => "quote_id" })
 ```
 
 #### Example: List
 
-```ts
-const quotes = await client.quote.list()
+```ruby
+# list returns an Array of Quote records (raises on error).
+quotes = client.Quote.list
 ```
 
 
@@ -404,7 +410,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-author = client.author
+author = client.Author
 author.load({ "id" => "example_id" })
 
 # author.data_get now returns the loaded author data

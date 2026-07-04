@@ -220,57 +220,27 @@ class DictumSDK:
         }
 
 
-    @property
-    def author(self):
-        """Idiomatic facade: client.author.list() / client.author.load({"id": ...})."""
-        from entity.author_entity import AuthorEntity
-        cached = getattr(self, "_author", None)
-        if cached is None:
-            cached = AuthorEntity(self, None)
-            self._author = cached
-        return cached
-
-    def Author(self, data=None):
-        # Deprecated: use client.author instead.
+    def Author(self, data=None) -> "AuthorEntity":
+        """Entity factory: client.Author().list({}) / client.Author().load({"id": ...})."""
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
-    @property
-    def category(self):
-        """Idiomatic facade: client.category.list() / client.category.load({"id": ...})."""
-        from entity.category_entity import CategoryEntity
-        cached = getattr(self, "_category", None)
-        if cached is None:
-            cached = CategoryEntity(self, None)
-            self._category = cached
-        return cached
-
-    def Category(self, data=None):
-        # Deprecated: use client.category instead.
+    def Category(self, data=None) -> "CategoryEntity":
+        """Entity factory: client.Category().list({}) / client.Category().load({"id": ...})."""
         from entity.category_entity import CategoryEntity
         return CategoryEntity(self, data)
 
 
-    @property
-    def quote(self):
-        """Idiomatic facade: client.quote.list() / client.quote.load({"id": ...})."""
-        from entity.quote_entity import QuoteEntity
-        cached = getattr(self, "_quote", None)
-        if cached is None:
-            cached = QuoteEntity(self, None)
-            self._quote = cached
-        return cached
-
-    def Quote(self, data=None):
-        # Deprecated: use client.quote instead.
+    def Quote(self, data=None) -> "QuoteEntity":
+        """Entity factory: client.Quote().list({}) / client.Quote().load({"id": ...})."""
         from entity.quote_entity import QuoteEntity
         return QuoteEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DictumSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class DictumSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.author_entity import AuthorEntity
+    from entity.category_entity import CategoryEntity
+    from entity.quote_entity import QuoteEntity

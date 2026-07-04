@@ -133,7 +133,7 @@ Alias for `DictumSDK.test()`.
 ## AuthorEntity
 
 ```ts
-const author = client.author
+const author = client.Author()
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ const author = client.author
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.author.list()
+const results = await client.Author().list()
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return a copy of the entity options.
 ## CategoryEntity
 
 ```ts
-const category = client.category
+const category = client.Category()
 ```
 
 ### Fields
@@ -202,7 +202,7 @@ const category = client.category
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.category.list()
+const results = await client.Category().list()
 ```
 
 ### Common Methods
@@ -236,7 +236,7 @@ Return a copy of the entity options.
 ## QuoteEntity
 
 ```ts
-const quote = client.quote
+const quote = client.Quote()
 ```
 
 ### Fields
@@ -256,7 +256,7 @@ const quote = client.quote
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.quote.list()
+const results = await client.Quote().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -264,7 +264,7 @@ const results = await client.quote.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.quote.load({ id: 'quote_id' })
+const result = await client.Quote().load({ id: 'quote_id' })
 ```
 
 ### Common Methods

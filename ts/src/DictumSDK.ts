@@ -206,42 +206,21 @@ class DictumSDK {
 
 
 
-  _author?: AuthorEntity
-
-  // Idiomatic facade: `client.author.list()` / `client.author.load({ id })`.
-  get author(): AuthorEntity {
-    return (this._author ??= new AuthorEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.author` instead. */
+  // Entity access: `client.Author().list()` / `client.Author().load({ id })`.
   Author(data?: any) {
     const self = this
     return new AuthorEntity(self,data)
   }
 
 
-  _category?: CategoryEntity
-
-  // Idiomatic facade: `client.category.list()` / `client.category.load({ id })`.
-  get category(): CategoryEntity {
-    return (this._category ??= new CategoryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.category` instead. */
+  // Entity access: `client.Category().list()` / `client.Category().load({ id })`.
   Category(data?: any) {
     const self = this
     return new CategoryEntity(self,data)
   }
 
 
-  _quote?: QuoteEntity
-
-  // Idiomatic facade: `client.quote.list()` / `client.quote.load({ id })`.
-  get quote(): QuoteEntity {
-    return (this._quote ??= new QuoteEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.quote` instead. */
+  // Entity access: `client.Quote().list()` / `client.Quote().load({ id })`.
   Quote(data?: any) {
     const self = this
     return new QuoteEntity(self,data)

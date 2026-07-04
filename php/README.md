@@ -29,18 +29,16 @@ require_once 'dictum_sdk.php';
 $client = new DictumSDK();
 ```
 
-### 2. List authors
+### 2. List author records
 
 ```php
 try {
-    $result = $client->author()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Author records — iterate directly.
+    $authors = $client->Author()->list();
+    foreach ($authors as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DictumSDK::test();
+$client = DictumSDK::test([
+    "entity" => ["author" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->author()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$author = $client->Author()->load(["id" => "test01"]);
+print_r($author);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Author` | `($data): AuthorEntity` | Create a Author entity instance. |
+| `Author` | `($data): AuthorEntity` | Create an Author entity instance. |
 | `Category` | `($data): CategoryEntity` | Create a Category entity instance. |
 | `Quote` | `($data): QuoteEntity` | Create a Quote entity instance. |
 
@@ -257,7 +259,7 @@ API path: `/quotes`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `$author = $client->Author();`
 
 #### Operations
 
@@ -275,14 +277,15 @@ Create an instance: `const author = client.author`
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```php
+// list() returns an array of Author records (throws on error).
+$authors = $client->Author()->list();
 ```
 
 
 ### Category
 
-Create an instance: `const category = client.category`
+Create an instance: `$category = $client->Category();`
 
 #### Operations
 
@@ -299,14 +302,15 @@ Create an instance: `const category = client.category`
 
 #### Example: List
 
-```ts
-const categorys = await client.category.list()
+```php
+// list() returns an array of Category records (throws on error).
+$categorys = $client->Category()->list();
 ```
 
 
 ### Quote
 
-Create an instance: `const quote = client.quote`
+Create an instance: `$quote = $client->Quote();`
 
 #### Operations
 
@@ -327,14 +331,16 @@ Create an instance: `const quote = client.quote`
 
 #### Example: Load
 
-```ts
-const quote = await client.quote.load({ id: 'quote_id' })
+```php
+// load() returns the bare Quote record (throws on error).
+$quote = $client->Quote()->load(["id" => "quote_id"]);
 ```
 
 #### Example: List
 
-```ts
-const quotes = await client.quote.list()
+```php
+// list() returns an array of Quote records (throws on error).
+$quotes = $client->Quote()->list();
 ```
 
 
@@ -409,7 +415,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$author = $client->author();
+$author = $client->Author();
 $author->load(["id" => "example_id"]);
 
 // $author->dataGet() now returns the loaded author data
