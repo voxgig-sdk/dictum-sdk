@@ -20,7 +20,7 @@ class Author
     public int $quote_count;
 }
 
-/** Match filter for Author#list (any subset of Author fields). */
+/** Request payload for Author#list. */
 class AuthorListMatch
 {
     public ?string $bio = null;
@@ -35,7 +35,7 @@ class Category
     public ?int $total = null;
 }
 
-/** Match filter for Category#list (any subset of Category fields). */
+/** Request payload for Category#list. */
 class CategoryListMatch
 {
     public ?array $category = null;
@@ -58,7 +58,7 @@ class QuoteLoadMatch
     public string $id;
 }
 
-/** Match filter for Quote#list (any subset of Quote fields). */
+/** Request payload for Quote#list. */
 class QuoteListMatch
 {
     public ?string $author = null;

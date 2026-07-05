@@ -15,8 +15,7 @@ type Author struct {
 	QuoteCount int `json:"quote_count"`
 }
 
-// AuthorListMatch mirrors the author fields as an all-optional match
-// filter (Go analog of Partial<Author>).
+// AuthorListMatch is the typed request payload for Author.ListTyped.
 type AuthorListMatch struct {
 	Bio *string `json:"bio,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -29,8 +28,7 @@ type Category struct {
 	Total *int `json:"total,omitempty"`
 }
 
-// CategoryListMatch mirrors the category fields as an all-optional match
-// filter (Go analog of Partial<Category>).
+// CategoryListMatch is the typed request payload for Category.ListTyped.
 type CategoryListMatch struct {
 	Category *[]any `json:"category,omitempty"`
 	Total *int `json:"total,omitempty"`
@@ -50,8 +48,7 @@ type QuoteLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// QuoteListMatch mirrors the quote fields as an all-optional match
-// filter (Go analog of Partial<Quote>).
+// QuoteListMatch is the typed request payload for Quote.ListTyped.
 type QuoteListMatch struct {
 	Author *string `json:"author,omitempty"`
 	Category *string `json:"category,omitempty"`

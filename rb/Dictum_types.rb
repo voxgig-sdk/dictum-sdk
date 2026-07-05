@@ -25,7 +25,7 @@ Author = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Author#list (any subset of Author fields).
+# Request payload for Author#list.
 #
 # @!attribute [rw] bio
 #   @return [String, nil]
@@ -55,7 +55,7 @@ Category = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Category#list (any subset of Category fields).
+# Request payload for Category#list.
 #
 # @!attribute [rw] category
 #   @return [Array, nil]
@@ -102,7 +102,7 @@ QuoteLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Quote#list (any subset of Quote fields).
+# Request payload for Quote#list.
 #
 # @!attribute [rw] author
 #   @return [String, nil]

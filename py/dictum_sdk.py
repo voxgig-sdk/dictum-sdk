@@ -221,19 +221,19 @@ class DictumSDK:
 
 
     def Author(self, data=None) -> "AuthorEntity":
-        """Entity factory: client.Author().list({}) / client.Author().load({"id": ...})."""
+        """Entity factory: client.Author().list() / client.Author().load({"id": ...})."""
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
     def Category(self, data=None) -> "CategoryEntity":
-        """Entity factory: client.Category().list({}) / client.Category().load({"id": ...})."""
+        """Entity factory: client.Category().list() / client.Category().load({"id": ...})."""
         from entity.category_entity import CategoryEntity
         return CategoryEntity(self, data)
 
 
     def Quote(self, data=None) -> "QuoteEntity":
-        """Entity factory: client.Quote().list({}) / client.Quote().load({"id": ...})."""
+        """Entity factory: client.Quote().list() / client.Quote().load({"id": ...})."""
         from entity.quote_entity import QuoteEntity
         return QuoteEntity(self, data)
 

@@ -95,18 +95,18 @@ author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `quote_count` | ``$INTEGER`` | Yes |  |
+| `bio` | `str` | No |  |
+| `name` | `str` | Yes |  |
+| `quote_count` | `int` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Author().list({})
+results = client.Author().list()
 for author in results:
     print(author)
 ```
@@ -150,17 +150,17 @@ category = client.Category()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `category` | `list` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Category().list({})
+results = client.Category().list()
 for category in results:
     print(category)
 ```
@@ -204,20 +204,20 @@ quote = client.Quote()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
+| `author` | `str` | Yes |  |
+| `category` | `str` | No |  |
+| `id` | `str` | Yes |  |
+| `source` | `str` | No |  |
+| `text` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Quote().list({})
+results = client.Quote().list()
 for quote in results:
     print(quote)
 ```

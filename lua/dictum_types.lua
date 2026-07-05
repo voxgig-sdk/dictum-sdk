@@ -12,12 +12,17 @@
 ---@field quote_count number
 
 ---@class AuthorListMatch
+---@field bio? string
+---@field name? string
+---@field quote_count? number
 
 ---@class Category
 ---@field category? table
 ---@field total? number
 
 ---@class CategoryListMatch
+---@field category? table
+---@field total? number
 
 ---@class Quote
 ---@field author string
@@ -30,6 +35,11 @@
 ---@field id string
 
 ---@class QuoteListMatch
+---@field author? string
+---@field category? string
+---@field id? string
+---@field source? string
+---@field text? string
 
 local M = {}
 

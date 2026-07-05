@@ -8,7 +8,7 @@ Complete API reference for the Dictum Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'dictum_sdk'
+require_relative 'Dictum_sdk'
 
 client = DictumSDK.new(options)
 ```
@@ -101,18 +101,18 @@ author = client.Author
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `quote_count` | ``$INTEGER`` | Yes |  |
+| `bio` | `String` | No |  |
+| `name` | `String` | Yes |  |
+| `quote_count` | `Integer` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Author.list(nil)
+results = client.Author.list
 ```
 
 ### Common Methods
@@ -155,17 +155,17 @@ category = client.Category
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `category` | `Array` | No |  |
+| `total` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Category.list(nil)
+results = client.Category.list
 ```
 
 ### Common Methods
@@ -208,20 +208,20 @@ quote = client.Quote
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
+| `author` | `String` | Yes |  |
+| `category` | `String` | No |  |
+| `id` | `String` | Yes |  |
+| `source` | `String` | No |  |
+| `text` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Quote.list(nil)
+results = client.Quote.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

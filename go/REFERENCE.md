@@ -105,9 +105,9 @@ author := client.Author(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `quote_count` | ``$INTEGER`` | Yes |  |
+| `bio` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `quote_count` | `int` | Yes |  |
 
 ### Operations
 
@@ -153,8 +153,8 @@ category := client.Category(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
-| `total` | ``$INTEGER`` | No |  |
+| `category` | `[]any` | No |  |
+| `total` | `int` | No |  |
 
 ### Operations
 
@@ -200,11 +200,11 @@ quote := client.Quote(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | Yes |  |
-| `category` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `source` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
+| `author` | `string` | Yes |  |
+| `category` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `source` | `string` | No |  |
+| `text` | `string` | Yes |  |
 
 ### Operations
 

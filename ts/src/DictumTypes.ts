@@ -11,14 +11,21 @@ export interface Author {
   quote_count: number
 }
 
-export type AuthorListMatch = Partial<Author>
+export interface AuthorListMatch {
+  bio?: string
+  name?: string
+  quote_count?: number
+}
 
 export interface Category {
   category?: any[]
   total?: number
 }
 
-export type CategoryListMatch = Partial<Category>
+export interface CategoryListMatch {
+  category?: any[]
+  total?: number
+}
 
 export interface Quote {
   author: string
@@ -32,5 +39,11 @@ export interface QuoteLoadMatch {
   id: string
 }
 
-export type QuoteListMatch = Partial<Quote>
+export interface QuoteListMatch {
+  author?: string
+  category?: string
+  id?: string
+  source?: string
+  text?: string
+}
 
