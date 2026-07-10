@@ -19,9 +19,9 @@ main: {
           url: "https://quoterism.com/api"
         }
       ]
+      summary: "This API provides access to a collection of inspiring expressions gathered throughout history."
       title: "Dictum API"
       version: "1.0.0"
+      website: "https://www.quoterism.com/developer"
     }
   }
-}
-

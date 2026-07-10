@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -515,14 +512,17 @@
           "name": "MIT",
           "url": "https://github.com/fisenkodv/dictum/blob/master/LICENSE"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://quoterism.com/api"
           }
         ],
+        "summary": "This API provides access to a collection of inspiring expressions gathered throughout history.",
         "title": "Dictum API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://www.quoterism.com/developer"
       },
       "option": {},
       "target": {
@@ -575,6 +575,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -625,6 +628,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

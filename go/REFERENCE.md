@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 author := client.Author(nil)
+fmt.Println(author.GetName()) // "author"
 ```
 
 ### Fields
@@ -117,6 +118,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Author(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 category := client.Category(nil)
+fmt.Println(category.GetName()) // "category"
 ```
 
 ### Fields
@@ -164,6 +170,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Category(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -194,6 +204,7 @@ Return the entity name.
 
 ```go
 quote := client.Quote(nil)
+fmt.Println(quote.GetName()) // "quote"
 ```
 
 ### Fields
@@ -214,6 +225,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Quote(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -222,6 +237,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Quote(nil).Load(map[string]any{"id": "quote_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
