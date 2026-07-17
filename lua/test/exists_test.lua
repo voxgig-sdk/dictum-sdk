@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Dictum SDK exists test
 
 local sdk = require("dictum_sdk")
 
