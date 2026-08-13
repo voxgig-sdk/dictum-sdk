@@ -42,7 +42,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "quote_count",
+            ["name"] = "quoteCount",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
@@ -78,6 +78,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/authors",
                 ["parts"] = {
@@ -91,7 +92,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.authors`",
                 },
                 ["index$"] = 0,
               },
@@ -107,7 +108,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "category",
+            ["name"] = "categories",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -129,6 +130,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/categories",
                 ["parts"] = {
@@ -137,7 +139,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.categories`",
                 },
                 ["index$"] = 0,
               },
@@ -233,6 +235,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes",
                 ["parts"] = {
@@ -248,7 +251,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.quotes`",
                 },
                 ["index$"] = 0,
               },
@@ -274,6 +277,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes/{id}",
                 ["parts"] = {
@@ -294,6 +298,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes/random",
                 ["parts"] = {

@@ -100,7 +100,7 @@ local author = client:Author(nil)
 | --- | --- | --- | --- |
 | `bio` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `quote_count` | `number` | Yes |  |
+| `quoteCount` | `number` | Yes |  |
 
 ### Operations
 
@@ -152,7 +152,7 @@ local category = client:Category(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `table` | No |  |
+| `categories` | `table` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations

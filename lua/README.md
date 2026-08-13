@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local author, err = client:Author():load()
+    local quote, err = client:Quote():load({ id = "example_id" })
     if err then error(err) end
-    -- author is the loaded record
+    -- quote is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -237,7 +237,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `bio` |  |
 | `name` |  |
-| `quote_count` |  |
+| `quoteCount` |  |
 
 Operations: List.
 
@@ -247,7 +247,7 @@ API path: `/authors`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 | `total` |  |
 
 Operations: List.
@@ -289,7 +289,7 @@ Create an instance: `local author = client:Author(nil)`
 | --- | --- | --- |
 | `bio` | `string` |  |
 | `name` | `string` |  |
-| `quote_count` | `number` |  |
+| `quoteCount` | `number` |  |
 
 #### Example: List
 
@@ -312,7 +312,7 @@ Create an instance: `local category = client:Category(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `table` |  |
+| `categories` | `table` |  |
 | `total` | `number` |  |
 
 #### Example: List

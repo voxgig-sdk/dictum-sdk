@@ -142,7 +142,7 @@ const author = client.Author()
 | --- | --- | --- | --- |
 | `bio` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `quote_count` | `number` | Yes |  |
+| `quoteCount` | `number` | Yes |  |
 
 ### Operations
 
@@ -192,7 +192,7 @@ const category = client.Category()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `any[]` | No |  |
+| `categories` | `any[]` | No |  |
 | `total` | `number` | No |  |
 
 ### Operations
@@ -248,6 +248,26 @@ const quote = client.Quote()
 | `id` | `string` | Yes |  |
 | `source` | `string` | No |  |
 | `text` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `random` | `/quotes/random` | `client.Quote().load({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Quote record — check the API definition for its shape.
+
+```ts
+const result = await client.Quote().load({
+  $action: 'random',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 

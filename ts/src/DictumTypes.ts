@@ -8,22 +8,22 @@
 export interface Author {
   bio?: string
   name: string
-  quote_count: number
+  quoteCount: number
 }
 
 export interface AuthorListMatch {
   bio?: string
   name?: string
-  quote_count?: number
+  quoteCount?: number
 }
 
 export interface Category {
-  category?: any[]
+  categories?: any[]
   total?: number
 }
 
 export interface CategoryListMatch {
-  category?: any[]
+  categories?: any[]
   total?: number
 }
 
@@ -37,6 +37,12 @@ export interface Quote {
 
 export interface QuoteLoadMatch {
   id: string
+
+  // Selects a custom action instead of the plain load:
+  //   'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface QuoteListMatch {

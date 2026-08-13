@@ -17,7 +17,7 @@ class Author
 {
     public ?string $bio = null;
     public string $name;
-    public int $quote_count;
+    public int $quoteCount;
 }
 
 /** Request payload for Author#list. */
@@ -25,20 +25,20 @@ class AuthorListMatch
 {
     public ?string $bio = null;
     public ?string $name = null;
-    public ?int $quote_count = null;
+    public ?int $quoteCount = null;
 }
 
 /** Category entity data model. */
 class Category
 {
-    public ?array $category = null;
+    public ?array $categories = null;
     public ?int $total = null;
 }
 
 /** Request payload for Category#list. */
 class CategoryListMatch
 {
-    public ?array $category = null;
+    public ?array $categories = null;
     public ?int $total = null;
 }
 

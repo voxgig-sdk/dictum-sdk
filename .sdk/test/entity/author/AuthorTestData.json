@@ -4,17 +4,17 @@
       "AUTHOR00": {
         "bio": "s1e",
         "name": "s1f",
-        "quote_count": "s20"
+        "quoteCount": "s20"
       },
       "AUTHOR01": {
         "bio": "s3c",
         "name": "s3d",
-        "quote_count": "s3e"
+        "quoteCount": "s3e"
       },
       "AUTHOR02": {
         "bio": "s5a",
         "name": "s5b",
-        "quote_count": "s5c"
+        "quoteCount": "s5c"
       }
     }
   },
@@ -23,7 +23,7 @@
       "author_ref01": {
         "bio": "s78",
         "name": "s79",
-        "quote_count": "s7a"
+        "quoteCount": "s7a"
       }
     }
   }

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DictumControl
-from core.error import DictumError
-from core.result import DictumResult
-from core.spec import DictumSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import DictumControl
+from projectname_sdk.core.error import DictumError
+from projectname_sdk.core.result import DictumResult
+from projectname_sdk.core.spec import DictumSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -102,7 +102,7 @@ $author = $client->Author();
 | --- | --- | --- | --- |
 | `bio` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `quote_count` | `int` | Yes |  |
+| `quoteCount` | `int` | Yes |  |
 
 ### Operations
 
@@ -154,7 +154,7 @@ $category = $client->Category();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `array` | No |  |
+| `categories` | `array` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

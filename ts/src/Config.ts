@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Dictum',
   }
 
 
@@ -76,7 +76,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "quote_count",
+          "name": "quoteCount",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 2
@@ -112,6 +112,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/authors",
               "parts": [
@@ -125,7 +126,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.authors`"
               },
               "index$": 0
             }
@@ -141,7 +142,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "category",
+          "name": "categories",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -163,6 +164,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/categories",
               "parts": [
@@ -171,7 +173,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.categories`"
               },
               "index$": 0
             }
@@ -267,6 +269,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/quotes",
               "parts": [
@@ -282,7 +285,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.quotes`"
               },
               "index$": 0
             }
@@ -308,6 +311,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/quotes/{id}",
               "parts": [
@@ -328,6 +332,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/quotes/random",
               "parts": [

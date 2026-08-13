@@ -35,7 +35,9 @@ const client = new DictumSDK()
 
 ### 2. List author records
 
-`list()` resolves to an array of Author objects — iterate it directly:
+`list()` resolves to an array of Author ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const authors = await client.Author().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = DictumSDK.test()
 
 const author = await client.Author().list()
-// author is a bare entity populated with mock response data
+// author is the entity, populated with mock response data
+// — call author.data() for the record itself
 console.log(author)
 ```
 
@@ -290,7 +293,7 @@ The `prepare()` method returns:
 | --- | --- |
 | `bio` |  |
 | `name` |  |
-| `quote_count` |  |
+| `quoteCount` |  |
 
 Operations: list.
 
@@ -300,7 +303,7 @@ API path: `/authors`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 | `total` |  |
 
 Operations: list.
@@ -342,7 +345,7 @@ Create an instance: `const author = client.Author()`
 | --- | --- | --- |
 | `bio` | `string` |  |
 | `name` | `string` |  |
-| `quote_count` | `number` |  |
+| `quoteCount` | `number` |  |
 
 #### Example: List
 
@@ -365,7 +368,7 @@ Create an instance: `const category = client.Category()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `any[]` |  |
+| `categories` | `any[]` |  |
 | `total` | `number` |  |
 
 #### Example: List

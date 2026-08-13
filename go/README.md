@@ -266,7 +266,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"bio"` |  |
 | `"name"` |  |
-| `"quote_count"` |  |
+| `"quoteCount"` |  |
 
 Operations: List.
 
@@ -276,7 +276,7 @@ API path: `/authors`
 
 | Field | Description |
 | --- | --- |
-| `"category"` |  |
+| `"categories"` |  |
 | `"total"` |  |
 
 Operations: List.
@@ -318,7 +318,7 @@ Create an instance: `author := client.Author(nil)`
 | --- | --- | --- |
 | `bio` | `string` |  |
 | `name` | `string` |  |
-| `quote_count` | `int` |  |
+| `quoteCount` | `int` |  |
 
 #### Example: List
 
@@ -345,7 +345,7 @@ Create an instance: `category := client.Category(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `[]any` |  |
+| `categories` | `[]any` |  |
 | `total` | `int` |  |
 
 #### Example: List

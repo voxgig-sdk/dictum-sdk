@@ -2,15 +2,15 @@
   "existing": {
     "category": {
       "CATEGORY00": {
-        "category": [],
+        "categories": [],
         "total": "s15"
       },
       "CATEGORY01": {
-        "category": [],
+        "categories": [],
         "total": "s29"
       },
       "CATEGORY02": {
-        "category": [],
+        "categories": [],
         "total": "s3d"
       }
     }
@@ -18,7 +18,7 @@
   "new": {
     "category": {
       "category_ref01": {
-        "category": [],
+        "categories": [],
         "total": "s51"
       }
     }

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Dictum SDK exists test
 
 import pytest
 from dictum_sdk import DictumSDK

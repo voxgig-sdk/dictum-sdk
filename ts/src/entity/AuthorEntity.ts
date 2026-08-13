@@ -37,7 +37,7 @@ class AuthorEntity extends DictumEntityBase<Author> {
 
 
 
-  async list(this: any, reqmatch?: AuthorListMatch, ctrl?: Control): Promise<Author[]> {
+  async list(this: any, reqmatch?: AuthorListMatch, ctrl?: Control): Promise<AuthorEntity[]> {
 
     const utility = this._utility
 

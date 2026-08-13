@@ -43,7 +43,7 @@ module DictumConfig
             },
             {
               "active" => true,
-              "name" => "quote_count",
+              "name" => "quoteCount",
               "req" => true,
               "type" => "`$INTEGER`",
               "index$" => 2,
@@ -79,6 +79,7 @@ module DictumConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/authors",
                   "parts" => [
@@ -92,7 +93,7 @@ module DictumConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.authors`",
                   },
                   "index$" => 0,
                 },
@@ -108,7 +109,7 @@ module DictumConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "category",
+              "name" => "categories",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -130,6 +131,7 @@ module DictumConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/categories",
                   "parts" => [
@@ -138,7 +140,7 @@ module DictumConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.categories`",
                   },
                   "index$" => 0,
                 },
@@ -234,6 +236,7 @@ module DictumConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes",
                   "parts" => [
@@ -249,7 +252,7 @@ module DictumConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.quotes`",
                   },
                   "index$" => 0,
                 },
@@ -275,6 +278,7 @@ module DictumConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/{id}",
                   "parts" => [
@@ -295,6 +299,7 @@ module DictumConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/random",
                   "parts" => [

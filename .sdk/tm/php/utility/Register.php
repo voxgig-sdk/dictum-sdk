@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ DictumUtility::setRegistrar(function (DictumUtility $u): void {
     $u->prepare_params = [DictumPrepareParams::class, 'call'];
     $u->prepare_path = [DictumPreparePath::class, 'call'];
     $u->prepare_query = [DictumPrepareQuery::class, 'call'];
+    $u->graphql_body = [DictumGraphql::class, 'body'];
+    $u->graphql_errors = [DictumGraphql::class, 'errors'];
     $u->result_basic = [DictumResultBasic::class, 'call'];
     $u->result_body = [DictumResultBody::class, 'call'];
     $u->result_headers = [DictumResultHeaders::class, 'call'];

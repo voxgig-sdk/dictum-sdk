@@ -108,7 +108,7 @@ fmt.Println(author.GetName()) // "author"
 | --- | --- | --- | --- |
 | `bio` | `string` | No |  |
 | `name` | `string` | Yes |  |
-| `quote_count` | `int` | Yes |  |
+| `quoteCount` | `int` | Yes |  |
 
 ### Operations
 
@@ -159,7 +159,7 @@ fmt.Println(category.GetName()) // "category"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `[]any` | No |  |
+| `categories` | `[]any` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations

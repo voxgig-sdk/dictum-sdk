@@ -16,12 +16,12 @@
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] quote_count
+# @!attribute [rw] quoteCount
 #   @return [Integer]
 Author = Struct.new(
   :bio,
   :name,
-  :quote_count,
+  :quoteCount,
   keyword_init: true
 )
 
@@ -33,37 +33,37 @@ Author = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] quote_count
+# @!attribute [rw] quoteCount
 #   @return [Integer, nil]
 AuthorListMatch = Struct.new(
   :bio,
   :name,
-  :quote_count,
+  :quoteCount,
   keyword_init: true
 )
 
 # Category entity data model.
 #
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
 #   @return [Integer, nil]
 Category = Struct.new(
-  :category,
+  :categories,
   :total,
   keyword_init: true
 )
 
 # Request payload for Category#list.
 #
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 #
 # @!attribute [rw] total
 #   @return [Integer, nil]
 CategoryListMatch = Struct.new(
-  :category,
+  :categories,
   :total,
   keyword_init: true
 )

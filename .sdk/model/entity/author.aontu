@@ -16,7 +16,7 @@ main: kit: entity: author: {
       type: "`$STRING`"
     }
     {
-      name: "quote_count"
+      name: "quoteCount"
       req: true
       type: "`$INTEGER`"
     }
@@ -61,7 +61,7 @@ main: kit: entity: author: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.authors`"
           }
         }
       ]

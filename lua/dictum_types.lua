@@ -9,19 +9,19 @@
 ---@class Author
 ---@field bio? string
 ---@field name string
----@field quote_count number
+---@field quoteCount number
 
 ---@class AuthorListMatch
 ---@field bio? string
 ---@field name? string
----@field quote_count? number
+---@field quoteCount? number
 
 ---@class Category
----@field category? table
+---@field categories? table
 ---@field total? number
 
 ---@class CategoryListMatch
----@field category? table
+---@field categories? table
 ---@field total? number
 
 ---@class Quote

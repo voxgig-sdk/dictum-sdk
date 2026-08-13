@@ -103,7 +103,7 @@ author = client.Author
 | --- | --- | --- | --- |
 | `bio` | `String` | No |  |
 | `name` | `String` | Yes |  |
-| `quote_count` | `Integer` | Yes |  |
+| `quoteCount` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -155,7 +155,7 @@ category = client.Category
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `Array` | No |  |
+| `categories` | `Array` | No |  |
 | `total` | `Integer` | No |  |
 
 ### Operations

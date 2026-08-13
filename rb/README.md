@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = DictumSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 author = client.Author.list()
 puts author
 ```
@@ -241,7 +242,7 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `bio` |  |
 | `name` |  |
-| `quote_count` |  |
+| `quoteCount` |  |
 
 Operations: List.
 
@@ -251,7 +252,7 @@ API path: `/authors`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 | `total` |  |
 
 Operations: List.
@@ -293,7 +294,7 @@ Create an instance: `author = client.Author`
 | --- | --- | --- |
 | `bio` | `String` |  |
 | `name` | `String` |  |
-| `quote_count` | `Integer` |  |
+| `quoteCount` | `Integer` |  |
 
 #### Example: List
 
@@ -317,7 +318,7 @@ Create an instance: `category = client.Category`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `Array` |  |
+| `categories` | `Array` |  |
 | `total` | `Integer` |  |
 
 #### Example: List
@@ -352,7 +353,7 @@ Create an instance: `quote = client.Quote`
 #### Example: Load
 
 ```ruby
-# load returns the bare Quote record (raises on error).
+# load returns the ENTITY — call data_get for the Quote record (raises on error).
 quote = client.Quote.load({ "id" => "quote_id" })
 ```
 

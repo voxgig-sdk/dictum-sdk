@@ -63,7 +63,7 @@ describe('CategoryEntity', async () => {
     const category_ref01_ent = client.Category()
     const category_ref01_match: any = {}
 
-    const category_ref01_list = await category_ref01_ent.list(category_ref01_match)
+    const category_ref01_list = (await category_ref01_ent.list(category_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -8,18 +8,21 @@ guide: {
   entity: author: {
     path: "/authors": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.authors`")|top
     }
   }
 
   entity: category: {
     path: "/categories": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.categories`")|top
     }
   }
 
   entity: quote: {
     path: "/quotes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.quotes`")|top
     }
     path: "/quotes/random": {
       action: "random": {}

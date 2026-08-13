@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DictumSDK
-from core.error import DictumError
-from core.result import DictumResult
-from core.response import DictumResponse
-from core.spec import DictumSpec
-from feature.base_feature import DictumBaseFeature
+from projectname_sdk.core.error import DictumError
+from projectname_sdk.core.result import DictumResult
+from projectname_sdk.core.response import DictumResponse
+from projectname_sdk.core.spec import DictumSpec
+from projectname_sdk.feature.base_feature import DictumBaseFeature
 
 
 def _client():

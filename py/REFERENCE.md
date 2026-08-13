@@ -97,7 +97,7 @@ author = client.Author()
 | --- | --- | --- | --- |
 | `bio` | `str` | No |  |
 | `name` | `str` | Yes |  |
-| `quote_count` | `int` | Yes |  |
+| `quoteCount` | `int` | Yes |  |
 
 ### Operations
 
@@ -150,7 +150,7 @@ category = client.Category()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `list` | No |  |
+| `categories` | `list` | No |  |
 | `total` | `int` | No |  |
 
 ### Operations
