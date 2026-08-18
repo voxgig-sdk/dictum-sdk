@@ -40,7 +40,7 @@ class DictumSDK
         $utility = new DictumUtility();
         $this->_utility = $utility;
 
-        $config = DictumConfig::make_config();
+        $config = DictumConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

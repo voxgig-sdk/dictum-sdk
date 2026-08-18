@@ -33,7 +33,7 @@ class QuoteEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = DictumConfig.make_config
+    cfg = DictumConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = DictumSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

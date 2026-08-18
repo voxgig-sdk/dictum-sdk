@@ -15,7 +15,7 @@ require_relative "../Dictum_sdk"
 module DictumFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DictumConfig.make_config["feature"]
+    f = DictumConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

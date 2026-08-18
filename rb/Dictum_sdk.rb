@@ -28,7 +28,7 @@ class DictumSDK
     utility = DictumUtility.new
     @_utility = utility
 
-    config = DictumConfig.make_config
+    config = DictumConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

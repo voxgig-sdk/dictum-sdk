@@ -23,8 +23,8 @@ class DictumSDK:
         utility = DictumUtility()
         self._utility = utility
 
-        from dictum_sdk.config import make_config
-        config = make_config()
+        from dictum_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,
