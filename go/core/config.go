@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Dictum",
+			"slug": "dictum",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,16 +38,19 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "bio",
+						"short": "Brief biography of the author",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "Name of the author",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "quoteCount",
 						"req": true,
+						"short": "Number of quotes by this author in the collection",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -105,6 +111,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "total",
+						"short": "Total number of categories",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -140,24 +147,29 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "author",
 						"req": true,
+						"short": "The author of the quote",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "category",
+						"short": "Category or theme of the quote",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier of the quote",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "source",
+						"short": "Source or origin of the quote",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "text",
 						"req": true,
+						"short": "The text content of the quote",
 						"type": "`$STRING`",
 					},
 				},

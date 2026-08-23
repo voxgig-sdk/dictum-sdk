@@ -36,18 +36,21 @@
               "active": true,
               "name": "bio",
               "req": false,
+              "short": "Brief biography of the author",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "Name of the author",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "quoteCount",
               "req": true,
+              "short": "Number of quotes by this author in the collection",
               "type": "`$INTEGER`"
             }
           ],
@@ -121,6 +124,7 @@
               "active": true,
               "name": "total",
               "req": false,
+              "short": "Total number of categories",
               "type": "`$INTEGER`"
             }
           ],
@@ -162,30 +166,35 @@
               "active": true,
               "name": "author",
               "req": true,
+              "short": "The author of the quote",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "category",
               "req": false,
+              "short": "Category or theme of the quote",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "Unique identifier of the quote",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "source",
               "req": false,
+              "short": "Source or origin of the quote",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "text",
               "req": true,
+              "short": "The text content of the quote",
               "type": "`$STRING`"
             }
           ],

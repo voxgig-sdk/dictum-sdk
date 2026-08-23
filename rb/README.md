@@ -240,9 +240,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `name` |  |
-| `quoteCount` |  |
+| `bio` | Brief biography of the author |
+| `name` | Name of the author |
+| `quoteCount` | Number of quotes by this author in the collection |
 
 Operations: List.
 
@@ -253,7 +253,7 @@ API path: `/authors`
 | Field | Description |
 | --- | --- |
 | `categories` |  |
-| `total` |  |
+| `total` | Total number of categories |
 
 Operations: List.
 
@@ -263,11 +263,11 @@ API path: `/categories`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `category` |  |
-| `id` |  |
-| `source` |  |
-| `text` |  |
+| `author` | The author of the quote |
+| `category` | Category or theme of the quote |
+| `id` | Unique identifier of the quote |
+| `source` | Source or origin of the quote |
+| `text` | The text content of the quote |
 
 Operations: List, Load.
 
@@ -292,9 +292,9 @@ Create an instance: `author = client.Author`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `String` |  |
-| `name` | `String` |  |
-| `quoteCount` | `Integer` |  |
+| `bio` | `String` | Brief biography of the author |
+| `name` | `String` | Name of the author |
+| `quoteCount` | `Integer` | Number of quotes by this author in the collection |
 
 #### Example: List
 
@@ -319,7 +319,7 @@ Create an instance: `category = client.Category`
 | Field | Type | Description |
 | --- | --- | --- |
 | `categories` | `Array` |  |
-| `total` | `Integer` |  |
+| `total` | `Integer` | Total number of categories |
 
 #### Example: List
 
@@ -344,11 +344,11 @@ Create an instance: `quote = client.Quote`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `String` |  |
-| `category` | `String` |  |
-| `id` | `String` |  |
-| `source` | `String` |  |
-| `text` | `String` |  |
+| `author` | `String` | The author of the quote |
+| `category` | `String` | Category or theme of the quote |
+| `id` | `String` | Unique identifier of the quote |
+| `source` | `String` | Source or origin of the quote |
+| `text` | `String` | The text content of the quote |
 
 #### Example: Load
 

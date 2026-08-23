@@ -98,9 +98,9 @@ local author = client:Author(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `quoteCount` | `number` | Yes |  |
+| `bio` | `string` | No | Brief biography of the author |
+| `name` | `string` | Yes | Name of the author |
+| `quoteCount` | `number` | Yes | Number of quotes by this author in the collection |
 
 ### Operations
 
@@ -153,7 +153,7 @@ local category = client:Category(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `categories` | `table` | No |  |
-| `total` | `number` | No |  |
+| `total` | `number` | No | Total number of categories |
 
 ### Operations
 
@@ -205,11 +205,11 @@ local quote = client:Quote(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | Yes |  |
-| `category` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `source` | `string` | No |  |
-| `text` | `string` | Yes |  |
+| `author` | `string` | Yes | The author of the quote |
+| `category` | `string` | No | Category or theme of the quote |
+| `id` | `string` | Yes | Unique identifier of the quote |
+| `source` | `string` | No | Source or origin of the quote |
+| `text` | `string` | Yes | The text content of the quote |
 
 ### Operations
 

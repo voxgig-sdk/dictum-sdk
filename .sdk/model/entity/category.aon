@@ -13,6 +13,7 @@ main: kit: entity: category: {
     {
       name: "total"
       req: false
+      short: "Total number of categories"
       type: "`$INTEGER`"
     }
   ]

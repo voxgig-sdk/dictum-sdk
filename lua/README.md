@@ -235,9 +235,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `name` |  |
-| `quoteCount` |  |
+| `bio` | Brief biography of the author |
+| `name` | Name of the author |
+| `quoteCount` | Number of quotes by this author in the collection |
 
 Operations: List.
 
@@ -248,7 +248,7 @@ API path: `/authors`
 | Field | Description |
 | --- | --- |
 | `categories` |  |
-| `total` |  |
+| `total` | Total number of categories |
 
 Operations: List.
 
@@ -258,11 +258,11 @@ API path: `/categories`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `category` |  |
-| `id` |  |
-| `source` |  |
-| `text` |  |
+| `author` | The author of the quote |
+| `category` | Category or theme of the quote |
+| `id` | Unique identifier of the quote |
+| `source` | Source or origin of the quote |
+| `text` | The text content of the quote |
 
 Operations: List, Load.
 
@@ -287,9 +287,9 @@ Create an instance: `local author = client:Author(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `string` |  |
-| `name` | `string` |  |
-| `quoteCount` | `number` |  |
+| `bio` | `string` | Brief biography of the author |
+| `name` | `string` | Name of the author |
+| `quoteCount` | `number` | Number of quotes by this author in the collection |
 
 #### Example: List
 
@@ -313,7 +313,7 @@ Create an instance: `local category = client:Category(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `categories` | `table` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of categories |
 
 #### Example: List
 
@@ -337,11 +337,11 @@ Create an instance: `local quote = client:Quote(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `category` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `text` | `string` |  |
+| `author` | `string` | The author of the quote |
+| `category` | `string` | Category or theme of the quote |
+| `id` | `string` | Unique identifier of the quote |
+| `source` | `string` | Source or origin of the quote |
+| `text` | `string` | The text content of the quote |
 
 #### Example: Load
 

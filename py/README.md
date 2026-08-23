@@ -246,9 +246,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `name` |  |
-| `quoteCount` |  |
+| `bio` | Brief biography of the author |
+| `name` | Name of the author |
+| `quoteCount` | Number of quotes by this author in the collection |
 
 Operations: List.
 
@@ -259,7 +259,7 @@ API path: `/authors`
 | Field | Description |
 | --- | --- |
 | `categories` |  |
-| `total` |  |
+| `total` | Total number of categories |
 
 Operations: List.
 
@@ -269,11 +269,11 @@ API path: `/categories`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `category` |  |
-| `id` |  |
-| `source` |  |
-| `text` |  |
+| `author` | The author of the quote |
+| `category` | Category or theme of the quote |
+| `id` | Unique identifier of the quote |
+| `source` | Source or origin of the quote |
+| `text` | The text content of the quote |
 
 Operations: List, Load.
 
@@ -298,9 +298,9 @@ Create an instance: `author = client.Author()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `str` |  |
-| `name` | `str` |  |
-| `quoteCount` | `int` |  |
+| `bio` | `str` | Brief biography of the author |
+| `name` | `str` | Name of the author |
+| `quoteCount` | `int` | Number of quotes by this author in the collection |
 
 #### Example: List
 
@@ -324,7 +324,7 @@ Create an instance: `category = client.Category()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `categories` | `list` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of categories |
 
 #### Example: List
 
@@ -348,11 +348,11 @@ Create an instance: `quote = client.Quote()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `str` |  |
-| `category` | `str` |  |
-| `id` | `str` |  |
-| `source` | `str` |  |
-| `text` | `str` |  |
+| `author` | `str` | The author of the quote |
+| `category` | `str` | Category or theme of the quote |
+| `id` | `str` | Unique identifier of the quote |
+| `source` | `str` | Source or origin of the quote |
+| `text` | `str` | The text content of the quote |
 
 #### Example: Load
 

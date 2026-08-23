@@ -95,9 +95,9 @@ author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `str` | No |  |
-| `name` | `str` | Yes |  |
-| `quoteCount` | `int` | Yes |  |
+| `bio` | `str` | No | Brief biography of the author |
+| `name` | `str` | Yes | Name of the author |
+| `quoteCount` | `int` | Yes | Number of quotes by this author in the collection |
 
 ### Operations
 
@@ -151,7 +151,7 @@ category = client.Category()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `categories` | `list` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of categories |
 
 ### Operations
 
@@ -204,11 +204,11 @@ quote = client.Quote()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `str` | Yes |  |
-| `category` | `str` | No |  |
-| `id` | `str` | Yes |  |
-| `source` | `str` | No |  |
-| `text` | `str` | Yes |  |
+| `author` | `str` | Yes | The author of the quote |
+| `category` | `str` | No | Category or theme of the quote |
+| `id` | `str` | Yes | Unique identifier of the quote |
+| `source` | `str` | No | Source or origin of the quote |
+| `text` | `str` | Yes | The text content of the quote |
 
 ### Operations
 

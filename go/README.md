@@ -6,7 +6,7 @@ The Golang SDK for the Dictum API — an entity-oriented client using standard G
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Author(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -264,9 +264,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"bio"` |  |
-| `"name"` |  |
-| `"quoteCount"` |  |
+| `"bio"` | Brief biography of the author |
+| `"name"` | Name of the author |
+| `"quoteCount"` | Number of quotes by this author in the collection |
 
 Operations: List.
 
@@ -277,7 +277,7 @@ API path: `/authors`
 | Field | Description |
 | --- | --- |
 | `"categories"` |  |
-| `"total"` |  |
+| `"total"` | Total number of categories |
 
 Operations: List.
 
@@ -287,11 +287,11 @@ API path: `/categories`
 
 | Field | Description |
 | --- | --- |
-| `"author"` |  |
-| `"category"` |  |
-| `"id"` |  |
-| `"source"` |  |
-| `"text"` |  |
+| `"author"` | The author of the quote |
+| `"category"` | Category or theme of the quote |
+| `"id"` | Unique identifier of the quote |
+| `"source"` | Source or origin of the quote |
+| `"text"` | The text content of the quote |
 
 Operations: List, Load.
 
@@ -316,9 +316,9 @@ Create an instance: `author := client.Author(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `string` |  |
-| `name` | `string` |  |
-| `quoteCount` | `int` |  |
+| `bio` | `string` | Brief biography of the author |
+| `name` | `string` | Name of the author |
+| `quoteCount` | `int` | Number of quotes by this author in the collection |
 
 #### Example: List
 
@@ -346,7 +346,7 @@ Create an instance: `category := client.Category(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `categories` | `[]any` |  |
-| `total` | `int` |  |
+| `total` | `int` | Total number of categories |
 
 #### Example: List
 
@@ -374,11 +374,11 @@ Create an instance: `quote := client.Quote(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `category` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `text` | `string` |  |
+| `author` | `string` | The author of the quote |
+| `category` | `string` | Category or theme of the quote |
+| `id` | `string` | Unique identifier of the quote |
+| `source` | `string` | Source or origin of the quote |
+| `text` | `string` | The text content of the quote |
 
 #### Example: Load
 

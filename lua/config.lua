@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "Dictum",
+      slug = "dictum",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -31,16 +34,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "bio",
+            ["short"] = "Brief biography of the author",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
             ["req"] = true,
+            ["short"] = "Name of the author",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "quoteCount",
             ["req"] = true,
+            ["short"] = "Number of quotes by this author in the collection",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -101,6 +107,7 @@ local function make_config()
           },
           {
             ["name"] = "total",
+            ["short"] = "Total number of categories",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -136,24 +143,29 @@ local function make_config()
           {
             ["name"] = "author",
             ["req"] = true,
+            ["short"] = "The author of the quote",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "category",
+            ["short"] = "Category or theme of the quote",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
             ["req"] = true,
+            ["short"] = "Unique identifier of the quote",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "source",
+            ["short"] = "Source or origin of the quote",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "text",
             ["req"] = true,
+            ["short"] = "The text content of the quote",
             ["type"] = "`$STRING`",
           },
         },

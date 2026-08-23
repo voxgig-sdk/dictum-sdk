@@ -8,16 +8,19 @@ main: kit: entity: author: {
     {
       name: "bio"
       req: false
+      short: "Brief biography of the author"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: true
+      short: "Name of the author"
       type: "`$STRING`"
     }
     {
       name: "quoteCount"
       req: true
+      short: "Number of quotes by this author in the collection"
       type: "`$INTEGER`"
     }
   ]

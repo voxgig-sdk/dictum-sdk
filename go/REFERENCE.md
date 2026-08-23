@@ -106,9 +106,9 @@ fmt.Println(author.GetName()) // "author"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `quoteCount` | `int` | Yes |  |
+| `bio` | `string` | No | Brief biography of the author |
+| `name` | `string` | Yes | Name of the author |
+| `quoteCount` | `int` | Yes | Number of quotes by this author in the collection |
 
 ### Operations
 
@@ -160,7 +160,7 @@ fmt.Println(category.GetName()) // "category"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `categories` | `[]any` | No |  |
-| `total` | `int` | No |  |
+| `total` | `int` | No | Total number of categories |
 
 ### Operations
 
@@ -211,11 +211,11 @@ fmt.Println(quote.GetName()) // "quote"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | Yes |  |
-| `category` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `source` | `string` | No |  |
-| `text` | `string` | Yes |  |
+| `author` | `string` | Yes | The author of the quote |
+| `category` | `string` | No | Category or theme of the quote |
+| `id` | `string` | Yes | Unique identifier of the quote |
+| `source` | `string` | No | Source or origin of the quote |
+| `text` | `string` | Yes | The text content of the quote |
 
 ### Operations
 

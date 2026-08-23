@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -291,9 +291,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `bio` |  |
-| `name` |  |
-| `quoteCount` |  |
+| `bio` | Brief biography of the author |
+| `name` | Name of the author |
+| `quoteCount` | Number of quotes by this author in the collection |
 
 Operations: list.
 
@@ -304,7 +304,7 @@ API path: `/authors`
 | Field | Description |
 | --- | --- |
 | `categories` |  |
-| `total` |  |
+| `total` | Total number of categories |
 
 Operations: list.
 
@@ -314,11 +314,11 @@ API path: `/categories`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `category` |  |
-| `id` |  |
-| `source` |  |
-| `text` |  |
+| `author` | The author of the quote |
+| `category` | Category or theme of the quote |
+| `id` | Unique identifier of the quote |
+| `source` | Source or origin of the quote |
+| `text` | The text content of the quote |
 
 Operations: list, load.
 
@@ -343,9 +343,9 @@ Create an instance: `const author = client.Author()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | `string` |  |
-| `name` | `string` |  |
-| `quoteCount` | `number` |  |
+| `bio` | `string` | Brief biography of the author |
+| `name` | `string` | Name of the author |
+| `quoteCount` | `number` | Number of quotes by this author in the collection |
 
 #### Example: List
 
@@ -369,7 +369,7 @@ Create an instance: `const category = client.Category()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `categories` | `any[]` |  |
-| `total` | `number` |  |
+| `total` | `number` | Total number of categories |
 
 #### Example: List
 
@@ -393,11 +393,11 @@ Create an instance: `const quote = client.Quote()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `category` | `string` |  |
-| `id` | `string` |  |
-| `source` | `string` |  |
-| `text` | `string` |  |
+| `author` | `string` | The author of the quote |
+| `category` | `string` | Category or theme of the quote |
+| `id` | `string` | Unique identifier of the quote |
+| `source` | `string` | Source or origin of the quote |
+| `text` | `string` | The text content of the quote |
 
 #### Example: Load
 
