@@ -28,6 +28,7 @@ module DictumConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
