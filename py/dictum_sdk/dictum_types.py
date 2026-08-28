@@ -26,9 +26,8 @@ class Author(AuthorRequired, total=False):
 
 
 class AuthorListMatch(TypedDict, total=False):
-    bio: str
-    name: str
-    quoteCount: int
+    limit: int
+    page: int
 
 
 class Category(TypedDict, total=False):
@@ -59,6 +58,5 @@ class QuoteLoadMatch(TypedDict):
 class QuoteListMatch(TypedDict, total=False):
     author: str
     category: str
-    id: str
-    source: str
-    text: str
+    limit: int
+    page: int

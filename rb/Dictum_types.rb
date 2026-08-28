@@ -27,18 +27,14 @@ Author = Struct.new(
 
 # Request payload for Author#list.
 #
-# @!attribute [rw] bio
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] quoteCount
+# @!attribute [rw] page
 #   @return [Integer, nil]
 AuthorListMatch = Struct.new(
-  :bio,
-  :name,
-  :quoteCount,
+  :limit,
+  :page,
   keyword_init: true
 )
 
@@ -110,20 +106,16 @@ QuoteLoadMatch = Struct.new(
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] source
-#   @return [String, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 QuoteListMatch = Struct.new(
   :author,
   :category,
-  :id,
-  :source,
-  :text,
+  :limit,
+  :page,
   keyword_init: true
 )
 

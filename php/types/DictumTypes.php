@@ -23,9 +23,8 @@ class Author
 /** Request payload for Author#list. */
 class AuthorListMatch
 {
-    public ?string $bio = null;
-    public ?string $name = null;
-    public ?int $quoteCount = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 
 /** Category entity data model. */
@@ -63,8 +62,7 @@ class QuoteListMatch
 {
     public ?string $author = null;
     public ?string $category = null;
-    public ?string $id = null;
-    public ?string $source = null;
-    public ?string $text = null;
+    public ?int $limit = null;
+    public ?int $page = null;
 }
 

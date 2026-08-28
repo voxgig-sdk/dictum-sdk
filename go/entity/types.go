@@ -21,9 +21,8 @@ type Author struct {
 
 // AuthorListMatch is the typed request payload for Author.ListTyped.
 type AuthorListMatch struct {
-	Bio *string `json:"bio,omitempty"`
-	Name *string `json:"name,omitempty"`
-	QuoteCount *int `json:"quoteCount,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Category is the typed data model for the category entity.
@@ -56,9 +55,8 @@ type QuoteLoadMatch struct {
 type QuoteListMatch struct {
 	Author *string `json:"author,omitempty"`
 	Category *string `json:"category,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Source *string `json:"source,omitempty"`
-	Text *string `json:"text,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

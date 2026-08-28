@@ -12,9 +12,8 @@ export interface Author {
 }
 
 export interface AuthorListMatch {
-  bio?: string
-  name?: string
-  quoteCount?: number
+  limit?: number
+  page?: number
 }
 
 export interface Category {
@@ -48,8 +47,7 @@ export interface QuoteLoadMatch {
 export interface QuoteListMatch {
   author?: string
   category?: string
-  id?: string
-  source?: string
-  text?: string
+  limit?: number
+  page?: number
 }
 

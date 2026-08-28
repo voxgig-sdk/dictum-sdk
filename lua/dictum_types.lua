@@ -12,9 +12,8 @@
 ---@field quoteCount number
 
 ---@class AuthorListMatch
----@field bio? string
----@field name? string
----@field quoteCount? number
+---@field limit? number
+---@field page? number
 
 ---@class Category
 ---@field categories? table
@@ -37,9 +36,8 @@
 ---@class QuoteListMatch
 ---@field author? string
 ---@field category? string
----@field id? string
----@field source? string
----@field text? string
+---@field limit? number
+---@field page? number
 
 local M = {}
 
