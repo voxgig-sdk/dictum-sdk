@@ -79,8 +79,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/authors",
-                ["parts"] = {
-                  "authors",
+                ["segments"] = {
+                  {
+                    ["lit"] = "authors",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -91,6 +93,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.authors`",
+                },
+                ["parts"] = {
+                  "authors",
                 },
               },
             },
@@ -123,13 +128,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/categories",
-                ["parts"] = {
-                  "categories",
+                ["segments"] = {
+                  {
+                    ["lit"] = "categories",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.categories`",
+                },
+                ["parts"] = {
+                  "categories",
                 },
               },
             },
@@ -169,6 +179,10 @@ local function make_config()
             ["short"] = "The text content of the quote",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "quote",
         ["op"] = {
@@ -210,8 +224,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes",
-                ["parts"] = {
-                  "quotes",
+                ["segments"] = {
+                  {
+                    ["lit"] = "quotes",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -224,6 +240,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.quotes`",
+                },
+                ["parts"] = {
+                  "quotes",
                 },
               },
             },
@@ -247,9 +266,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes/{id}",
-                ["parts"] = {
-                  "quotes",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "quotes",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -260,15 +283,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "quotes",
+                  "{id}",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/quotes/random",
-                ["parts"] = {
-                  "quotes",
-                  "random",
+                ["segments"] = {
+                  {
+                    ["lit"] = "quotes",
+                  },
+                  {
+                    ["lit"] = "random",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "random",
@@ -276,6 +307,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "quotes",
+                  "random",
                 },
               },
             },

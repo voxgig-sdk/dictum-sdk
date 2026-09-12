@@ -83,8 +83,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/authors",
-								"parts": []any{
-									"authors",
+								"segments": []any{
+									map[string]any{
+										"lit": "authors",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -95,6 +97,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.authors`",
+								},
+								"parts": []any{
+									"authors",
 								},
 							},
 						},
@@ -127,13 +132,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/categories",
-								"parts": []any{
-									"categories",
+								"segments": []any{
+									map[string]any{
+										"lit": "categories",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.categories`",
+								},
+								"parts": []any{
+									"categories",
 								},
 							},
 						},
@@ -173,6 +183,10 @@ func MakeConfig() map[string]any {
 						"short": "The text content of the quote",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "quote",
 				"op": map[string]any{
@@ -214,8 +228,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/quotes",
-								"parts": []any{
-									"quotes",
+								"segments": []any{
+									map[string]any{
+										"lit": "quotes",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -228,6 +244,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.quotes`",
+								},
+								"parts": []any{
+									"quotes",
 								},
 							},
 						},
@@ -251,9 +270,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/quotes/{id}",
-								"parts": []any{
-									"quotes",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "quotes",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -264,15 +287,23 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"quotes",
+									"{id}",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/quotes/random",
-								"parts": []any{
-									"quotes",
-									"random",
+								"segments": []any{
+									map[string]any{
+										"lit": "quotes",
+									},
+									map[string]any{
+										"lit": "random",
+									},
 								},
 								"select": map[string]any{
 									"$action": "random",
@@ -280,6 +311,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"quotes",
+									"random",
 								},
 							},
 						},
@@ -291,6 +326,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

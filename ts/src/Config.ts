@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -118,8 +129,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/authors",
-              "parts": [
-                "authors"
+              "segments": [
+                {
+                  "lit": "authors"
+                }
               ],
               "select": {
                 "exist": [
@@ -130,7 +143,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.authors`"
-              }
+              },
+              "parts": [
+                "authors"
+              ]
             }
           ]
         }
@@ -162,14 +178,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/categories",
-              "parts": [
-                "categories"
+              "segments": [
+                {
+                  "lit": "categories"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.categories`"
-              }
+              },
+              "parts": [
+                "categories"
+              ]
             }
           ]
         }
@@ -209,6 +230,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "quote",
       "op": {
         "list": {
@@ -249,8 +274,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/quotes",
-              "parts": [
-                "quotes"
+              "segments": [
+                {
+                  "lit": "quotes"
+                }
               ],
               "select": {
                 "exist": [
@@ -263,7 +290,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.quotes`"
-              }
+              },
+              "parts": [
+                "quotes"
+              ]
             }
           ]
         },
@@ -286,9 +316,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/quotes/{id}",
-              "parts": [
-                "quotes",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "quotes"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -298,16 +332,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "quotes",
+                "{id}"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/quotes/random",
-              "parts": [
-                "quotes",
-                "random"
+              "segments": [
+                {
+                  "lit": "quotes"
+                },
+                {
+                  "lit": "random"
+                }
               ],
               "select": {
                 "$action": "random"
@@ -315,7 +357,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "quotes",
+                "random"
+              ]
             }
           ]
         }
@@ -331,6 +377,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

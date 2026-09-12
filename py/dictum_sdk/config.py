@@ -1,6 +1,14 @@
 # Dictum SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -100,8 +108,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/authors",
-                "parts": [
-                  "authors",
+                "segments": [
+                  {
+                    "lit": "authors",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -113,6 +123,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.authors`",
                 },
+                "parts": [
+                  "authors",
+                ],
               },
             ],
           },
@@ -144,14 +157,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/categories",
-                "parts": [
-                  "categories",
+                "segments": [
+                  {
+                    "lit": "categories",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.categories`",
                 },
+                "parts": [
+                  "categories",
+                ],
               },
             ],
           },
@@ -191,6 +209,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "quote",
         "op": {
           "list": {
@@ -231,8 +253,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/quotes",
-                "parts": [
-                  "quotes",
+                "segments": [
+                  {
+                    "lit": "quotes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -246,6 +270,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.quotes`",
                 },
+                "parts": [
+                  "quotes",
+                ],
               },
             ],
           },
@@ -268,9 +295,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/quotes/{id}",
-                "parts": [
-                  "quotes",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "quotes",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -281,15 +312,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "quotes",
+                  "{id}",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/quotes/random",
-                "parts": [
-                  "quotes",
-                  "random",
+                "segments": [
+                  {
+                    "lit": "quotes",
+                  },
+                  {
+                    "lit": "random",
+                  },
                 ],
                 "select": {
                   "$action": "random",
@@ -298,6 +337,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "quotes",
+                  "random",
+                ],
               },
             ],
           },

@@ -91,8 +91,10 @@ module DictumConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/authors",
-                  "parts" => [
-                    "authors",
+                  "segments" => [
+                    {
+                      "lit" => "authors",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -104,6 +106,9 @@ module DictumConfig
                     "req" => "`reqdata`",
                     "res" => "`body.authors`",
                   },
+                  "parts" => [
+                    "authors",
+                  ],
                 },
               ],
             },
@@ -135,14 +140,19 @@ module DictumConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/categories",
-                  "parts" => [
-                    "categories",
+                  "segments" => [
+                    {
+                      "lit" => "categories",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.categories`",
                   },
+                  "parts" => [
+                    "categories",
+                  ],
                 },
               ],
             },
@@ -182,6 +192,10 @@ module DictumConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "quote",
           "op" => {
             "list" => {
@@ -222,8 +236,10 @@ module DictumConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes",
-                  "parts" => [
-                    "quotes",
+                  "segments" => [
+                    {
+                      "lit" => "quotes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -237,6 +253,9 @@ module DictumConfig
                     "req" => "`reqdata`",
                     "res" => "`body.quotes`",
                   },
+                  "parts" => [
+                    "quotes",
+                  ],
                 },
               ],
             },
@@ -259,9 +278,13 @@ module DictumConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/{id}",
-                  "parts" => [
-                    "quotes",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "quotes",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -272,15 +295,23 @@ module DictumConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "quotes",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/random",
-                  "parts" => [
-                    "quotes",
-                    "random",
+                  "segments" => [
+                    {
+                      "lit" => "quotes",
+                    },
+                    {
+                      "lit" => "random",
+                    },
                   ],
                   "select" => {
                     "$action" => "random",
@@ -289,6 +320,10 @@ module DictumConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "quotes",
+                    "random",
+                  ],
                 },
               ],
             },

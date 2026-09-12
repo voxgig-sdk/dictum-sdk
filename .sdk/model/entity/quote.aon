@@ -84,8 +84,10 @@ main: kit: entity: quote: {
           }
           method: "GET"
           orig: "/quotes"
-          parts: [
-            "quotes"
+          segments: [
+            {
+              lit: "quotes"
+            }
           ]
           select: {
             exist: [
@@ -119,9 +121,13 @@ main: kit: entity: quote: {
           }
           method: "GET"
           orig: "/quotes/{id}"
-          parts: [
-            "quotes"
-            "{id}"
+          segments: [
+            {
+              lit: "quotes"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -136,9 +142,13 @@ main: kit: entity: quote: {
         {
           method: "GET"
           orig: "/quotes/random"
-          parts: [
-            "quotes"
-            "random"
+          segments: [
+            {
+              lit: "quotes"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"

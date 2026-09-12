@@ -105,8 +105,10 @@ class DictumConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/authors',
-                  'parts' => [
-                    'authors',
+                  'segments' => [
+                    [
+                      'lit' => 'authors',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -117,6 +119,9 @@ class DictumConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.authors`',
+                  ],
+                  'parts' => [
+                    'authors',
                   ],
                 ],
               ],
@@ -149,13 +154,18 @@ class DictumConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/categories',
-                  'parts' => [
-                    'categories',
+                  'segments' => [
+                    [
+                      'lit' => 'categories',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.categories`',
+                  ],
+                  'parts' => [
+                    'categories',
                   ],
                 ],
               ],
@@ -195,6 +205,10 @@ class DictumConfig
               'short' => 'The text content of the quote',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'quote',
           'op' => [
@@ -236,8 +250,10 @@ class DictumConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/quotes',
-                  'parts' => [
-                    'quotes',
+                  'segments' => [
+                    [
+                      'lit' => 'quotes',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -250,6 +266,9 @@ class DictumConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.quotes`',
+                  ],
+                  'parts' => [
+                    'quotes',
                   ],
                 ],
               ],
@@ -273,9 +292,13 @@ class DictumConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/quotes/{id}',
-                  'parts' => [
-                    'quotes',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'quotes',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -286,15 +309,23 @@ class DictumConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'quotes',
+                    '{id}',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/quotes/random',
-                  'parts' => [
-                    'quotes',
-                    'random',
+                  'segments' => [
+                    [
+                      'lit' => 'quotes',
+                    ],
+                    [
+                      'lit' => 'random',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'random',
@@ -302,6 +333,10 @@ class DictumConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'quotes',
+                    'random',
                   ],
                 ],
               ],
