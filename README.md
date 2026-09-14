@@ -105,7 +105,7 @@ local results, err = client:Author():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/releases) |
+| TypeScript | `@voxgig-sdk/dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/releases) |
 | Python | `voxgig-sdk-dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/releases) |
 | PHP | `voxgig-sdk/dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/dictum-sdk/go` | `go get github.com/voxgig-sdk/dictum-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Author():list()
 ### TypeScript
 
 ```ts
-import { DictumSDK } from '@voxgig-sdk/dictum'
+import { DictumSDK } from '@voxgig-sdk/dictum-sdk'
 
 const client = new DictumSDK()
 

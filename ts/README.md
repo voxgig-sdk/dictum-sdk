@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DictumSDK } from '@voxgig-sdk/dictum'
+import { DictumSDK } from '@voxgig-sdk/dictum-sdk'
 
 const client = new DictumSDK()
 ```
@@ -494,7 +494,7 @@ dictum/
 Import the SDK from the package root:
 
 ```ts
-import { DictumSDK } from '@voxgig-sdk/dictum'
+import { DictumSDK } from '@voxgig-sdk/dictum-sdk'
 ```
 
 ### Entity state
