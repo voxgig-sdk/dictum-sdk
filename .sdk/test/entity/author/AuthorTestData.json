@@ -4,17 +4,17 @@
       "AUTHOR00": {
         "bio": "s1e",
         "name": "s1f",
-        "quoteCount": "s20"
+        "quoteCount": 32
       },
       "AUTHOR01": {
         "bio": "s3c",
         "name": "s3d",
-        "quoteCount": "s3e"
+        "quoteCount": 62
       },
       "AUTHOR02": {
         "bio": "s5a",
         "name": "s5b",
-        "quoteCount": "s5c"
+        "quoteCount": 92
       }
     }
   },
@@ -23,7 +23,121 @@
       "author_ref01": {
         "bio": "s78",
         "name": "s79",
-        "quoteCount": "s7a"
+        "quoteCount": 122
+      }
+    }
+  },
+  "requests": {
+    "GET /authors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAuthors",
+        "parameters": [
+          {
+            "description": "Number of authors to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "authors": {
+                      "items": {
+                        "properties": {
+                          "bio": {
+                            "description": "Brief biography of the author",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the author",
+                            "type": "string"
+                          },
+                          "quoteCount": {
+                            "description": "Number of quotes by this author in the collection",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "quoteCount"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "limit": {
+                      "description": "Number of authors per page",
+                      "type": "integer"
+                    },
+                    "page": {
+                      "description": "Current page number",
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Total number of authors available",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with a list of authors"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

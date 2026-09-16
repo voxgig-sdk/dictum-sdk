@@ -1,12 +1,18 @@
 # Dictum SDK feature factory
 
 from dictum_sdk.feature.base_feature import DictumBaseFeature
+from dictum_sdk.feature.ratelimit_feature import DictumRatelimitFeature
+from dictum_sdk.feature.retry_feature import DictumRetryFeature
 from dictum_sdk.feature.test_feature import DictumTestFeature
+from dictum_sdk.feature.timeout_feature import DictumTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DictumBaseFeature(),
+    "ratelimit": lambda: DictumRatelimitFeature(),
+    "retry": lambda: DictumRetryFeature(),
     "test": lambda: DictumTestFeature(),
+    "timeout": lambda: DictumTimeoutFeature(),
 }
 
 

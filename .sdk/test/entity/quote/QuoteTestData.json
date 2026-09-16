@@ -33,5 +33,372 @@
         "text": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /quotes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getQuotes",
+        "parameters": [
+          {
+            "description": "Filter quotes by author name",
+            "in": "query",
+            "name": "author",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter quotes by category",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of quotes to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "limit": {
+                      "description": "Number of quotes per page",
+                      "type": "integer"
+                    },
+                    "page": {
+                      "description": "Current page number",
+                      "type": "integer"
+                    },
+                    "quotes": {
+                      "items": {
+                        "properties": {
+                          "author": {
+                            "description": "The author of the quote",
+                            "type": "string"
+                          },
+                          "category": {
+                            "description": "Category or theme of the quote",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier of the quote",
+                            "type": "string"
+                          },
+                          "source": {
+                            "description": "Source or origin of the quote",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "text": {
+                            "description": "The text content of the quote",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "text",
+                          "author"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "description": "Total number of quotes available",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with a list of quotes"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /quotes/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getQuoteById",
+        "parameters": [
+          {
+            "description": "Unique identifier of the quote",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "author": {
+                      "description": "The author of the quote",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "Category or theme of the quote",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier of the quote",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "Source or origin of the quote",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "text": {
+                      "description": "The text content of the quote",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text",
+                    "author"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with the requested quote"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Quote not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /quotes/random": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomQuote",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "author": "Steve Jobs",
+                  "category": "motivation",
+                  "id": "12345",
+                  "text": "The only way to do great work is to love what you do."
+                },
+                "schema": {
+                  "properties": {
+                    "author": {
+                      "description": "The author of the quote",
+                      "type": "string"
+                    },
+                    "category": {
+                      "description": "Category or theme of the quote",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier of the quote",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "Source or origin of the quote",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "text": {
+                      "description": "The text content of the quote",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "text",
+                    "author"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with a random quote"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

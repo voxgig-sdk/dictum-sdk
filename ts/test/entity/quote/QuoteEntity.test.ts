@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DictumSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('QuoteEntity', async () => {
 
     const live = 'TRUE' === process.env.DICTUM_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'quote.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'quote.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DICTUM_TEST_QUOTE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"author","req":true,"short":"The author of the quote","type":"`$STRING`","index$":0},{"active":true,"name":"category","req":false,"short":"Category or theme of the quote","type":"`$STRING`","index$":1},{"active":true,"name":"id","req":true,"short":"Unique identifier of the quote","type":"`$STRING`","index$":2},{"active":true,"name":"source","req":false,"short":"Source or origin of the quote","type":"`$STRING`","index$":3},{"active":true,"name":"text","req":true,"short":"The text content of the quote","type":"`$STRING`","index$":4}],"id":{"field":"id","name":"id"},"name":"quote","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"author","orig":"author","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"category","orig":"category","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":10,"kind":"query","name":"limit","orig":"limit","reqd":false,"type":"`$INTEGER`","index$":2},{"active":true,"example":1,"kind":"query","name":"page","orig":"page","reqd":false,"type":"`$INTEGER`","index$":3}]},"contract":{"id":"GET /quotes","json":"{\"operationId\":\"getQuotes\",\"parameters\":[{\"description\":\"Filter quotes by author name\",\"in\":\"query\",\"name\":\"author\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter quotes by category\",\"in\":\"query\",\"name\":\"category\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of quotes to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"limit\":{\"description\":\"Number of quotes per page\",\"type\":\"integer\"},\"page\":{\"description\":\"Current page number\",\"type\":\"integer\"},\"quotes\":{\"items\":{\"properties\":{\"author\":{\"description\":\"The author of the quote\",\"type\":\"string\"},\"category\":{\"description\":\"Category or theme of the quote\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the quote\",\"type\":\"string\"},\"source\":{\"description\":\"Source or origin of the quote\",\"nullable\":true,\"type\":\"string\"},\"text\":{\"description\":\"The text content of the quote\",\"type\":\"string\"}},\"required\":[\"id\",\"text\",\"author\"],\"type\":\"object\"},\"type\":\"array\"},\"total\":{\"description\":\"Total number of quotes available\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with a list of quotes\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"required\":[\"error\",\"status\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"required\":[\"error\",\"status\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/quotes","segments":[{"lit":"quotes"}],"select":{"exist":["author","category","limit","page"]},"transform":{"req":"`reqdata`","res":"`body.quotes`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /quotes/{id}","json":"{\"operationId\":\"getQuoteById\",\"parameters\":[{\"description\":\"Unique identifier of the quote\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"author\":{\"description\":\"The author of the quote\",\"type\":\"string\"},\"category\":{\"description\":\"Category or theme of the quote\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the quote\",\"type\":\"string\"},\"source\":{\"description\":\"Source or origin of the quote\",\"nullable\":true,\"type\":\"string\"},\"text\":{\"description\":\"The text content of the quote\",\"type\":\"string\"}},\"required\":[\"id\",\"text\",\"author\"],\"type\":\"object\"}}},\"description\":\"Successful response with the requested quote\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"required\":[\"error\",\"status\"],\"type\":\"object\"}}},\"description\":\"Quote not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"required\":[\"error\",\"status\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/quotes/{id}","segments":[{"lit":"quotes"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{},"contract":{"id":"GET /quotes/random","json":"{\"operationId\":\"getRandomQuote\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"author\":\"Steve Jobs\",\"category\":\"motivation\",\"id\":\"12345\",\"text\":\"The only way to do great work is to love what you do.\"},\"schema\":{\"properties\":{\"author\":{\"description\":\"The author of the quote\",\"type\":\"string\"},\"category\":{\"description\":\"Category or theme of the quote\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier of the quote\",\"type\":\"string\"},\"source\":{\"description\":\"Source or origin of the quote\",\"nullable\":true,\"type\":\"string\"},\"text\":{\"description\":\"The text content of the quote\",\"type\":\"string\"}},\"required\":[\"id\",\"text\",\"author\"],\"type\":\"object\"}}},\"description\":\"Successful response with a random quote\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"required\":[\"error\",\"status\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/quotes/random","segments":[{"lit":"quotes"},{"lit":"random"}],"select":{"$action":"random"},"transform":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"quote","name__orig":"quote","Name":"Quote","name_":"quote","name-":"quote","NAME":"QUOTE","index$":2}, {"active":true,"entity":"quote","key$":"BasicQuoteFlow","kind":"basic","name":"BasicQuoteFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"quote_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"quote_ref01","srcdatavar":"quote_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-quote_ref01"}}],"index$":1}]}, 'Quote')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DICTUM_TEST_QUOTE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DICTUM_TEST_QUOTE_ENTID': idmap,
     'DICTUM_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DICTUM_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DICTUM_TEST_QUOTE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DictumSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DICTUM_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
