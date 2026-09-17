@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicAuthorFlow.aon"
-@"BasicCategoryFlow.aon"
-@"BasicQuoteFlow.aon"
+@"./BasicAuthorFlow.aon"
+@"./BasicCategoryFlow.aon"
+@"./BasicQuoteFlow.aon"

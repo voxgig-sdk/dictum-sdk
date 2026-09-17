@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      author: {
-      },
-
-      category: {
-      },
-
-      quote: {
-      },
-
+        author: {
+        },
+  
+        category: {
+        },
+  
+        quote: {
+        },
+  
     }
   }
 

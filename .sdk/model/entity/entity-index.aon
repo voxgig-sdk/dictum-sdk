@@ -1,5 +1,5 @@
 # Entity Models
 
-@"author.aon"
-@"category.aon"
-@"quote.aon"
+@"./author.aon"
+@"./category.aon"
+@"./quote.aon"
