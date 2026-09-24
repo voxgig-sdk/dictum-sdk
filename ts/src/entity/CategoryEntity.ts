@@ -19,7 +19,6 @@ import type {
   CategoryListMatch,
 } from '../DictumTypes'
 
-// TODO: needs Entity superclass
 class CategoryEntity extends DictumEntityBase<Category> {
 
   constructor(client: DictumSDK, entopts: any) {

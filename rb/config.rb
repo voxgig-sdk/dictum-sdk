@@ -101,20 +101,23 @@ module DictumConfig
           "fields" => [
             {
               "name" => "bio",
-              "short" => "Brief biography of the author",
+              "title" => "Bio",
               "type" => "`$STRING`",
+              "short" => "Brief biography of the author",
             },
             {
               "name" => "name",
+              "title" => "Name",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Name of the author",
-              "type" => "`$STRING`",
             },
             {
               "name" => "quoteCount",
+              "title" => "Quote Count",
+              "type" => "`$INTEGER`",
               "req" => true,
               "short" => "Number of quotes by this author in the collection",
-              "type" => "`$INTEGER`",
             },
           ],
           "name" => "author",
@@ -124,24 +127,6 @@ module DictumConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => 50,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/authors",
@@ -150,19 +135,38 @@ module DictumConfig
                       "lit" => "authors",
                     },
                   ],
+                  "parts" => [
+                    "authors",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.authors`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 50,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "limit",
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.authors`",
-                  },
-                  "parts" => [
-                    "authors",
-                  ],
                 },
               ],
             },
@@ -175,12 +179,14 @@ module DictumConfig
           "fields" => [
             {
               "name" => "categories",
+              "title" => "Categories",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "total",
-              "short" => "Total number of categories",
+              "title" => "Total",
               "type" => "`$INTEGER`",
+              "short" => "Total number of categories",
             },
           ],
           "name" => "category",
@@ -190,7 +196,6 @@ module DictumConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/categories",
@@ -199,14 +204,16 @@ module DictumConfig
                       "lit" => "categories",
                     },
                   ],
-                  "select" => {},
+                  "parts" => [
+                    "categories",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.categories`",
                   },
-                  "parts" => [
-                    "categories",
-                  ],
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -219,31 +226,36 @@ module DictumConfig
           "fields" => [
             {
               "name" => "author",
+              "title" => "Author",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The author of the quote",
-              "type" => "`$STRING`",
             },
             {
               "name" => "category",
-              "short" => "Category or theme of the quote",
+              "title" => "Category",
               "type" => "`$STRING`",
+              "short" => "Category or theme of the quote",
             },
             {
               "name" => "id",
+              "title" => "Id",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Unique identifier of the quote",
-              "type" => "`$STRING`",
             },
             {
               "name" => "source",
-              "short" => "Source or origin of the quote",
+              "title" => "Source",
               "type" => "`$STRING`",
+              "short" => "Source or origin of the quote",
             },
             {
               "name" => "text",
+              "title" => "Text",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "The text content of the quote",
-              "type" => "`$STRING`",
             },
           ],
           "id" => {
@@ -257,36 +269,6 @@ module DictumConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "author",
-                        "orig" => "author",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "category",
-                        "orig" => "category",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 1,
-                        "kind" => "query",
-                        "name" => "page",
-                        "orig" => "page",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes",
@@ -295,6 +277,44 @@ module DictumConfig
                       "lit" => "quotes",
                     },
                   ],
+                  "parts" => [
+                    "quotes",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.quotes`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "author",
+                        "orig" => "author",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "category",
+                        "orig" => "category",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "page",
+                        "orig" => "page",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 1,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "author",
@@ -303,13 +323,6 @@ module DictumConfig
                       "page",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.quotes`",
-                  },
-                  "parts" => [
-                    "quotes",
-                  ],
                 },
               ],
             },
@@ -318,17 +331,6 @@ module DictumConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "id",
-                        "orig" => "id",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/{id}",
@@ -340,22 +342,33 @@ module DictumConfig
                       "var" => "id",
                     },
                   ],
+                  "parts" => [
+                    "quotes",
+                    "{id}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "id",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "quotes",
-                    "{id}",
-                  ],
                 },
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/quotes/random",
@@ -367,17 +380,19 @@ module DictumConfig
                       "lit" => "random",
                     },
                   ],
-                  "select" => {
-                    "$action" => "random",
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "quotes",
                     "random",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {
+                    "$action" => "random",
+                  },
                 },
               ],
             },

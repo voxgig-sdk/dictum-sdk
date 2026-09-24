@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthorEntity = void 0;
 const DictumEntityBase_1 = require("../DictumEntityBase");
-// TODO: needs Entity superclass
 class AuthorEntity extends DictumEntityBase_1.DictumEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

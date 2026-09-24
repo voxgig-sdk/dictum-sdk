@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -145,20 +138,23 @@ class Config {
       "fields": [
         {
           "name": "bio",
-          "short": "Brief biography of the author",
-          "type": "`$STRING`"
+          "title": "Bio",
+          "type": "`$STRING`",
+          "short": "Brief biography of the author"
         },
         {
           "name": "name",
+          "title": "Name",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Name of the author",
-          "type": "`$STRING`"
+          "short": "Name of the author"
         },
         {
           "name": "quoteCount",
+          "title": "Quote Count",
+          "type": "`$INTEGER`",
           "req": true,
-          "short": "Number of quotes by this author in the collection",
-          "type": "`$INTEGER`"
+          "short": "Number of quotes by this author in the collection"
         }
       ],
       "name": "author",
@@ -168,24 +164,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 50,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/authors",
@@ -194,19 +172,38 @@ class Config {
                   "lit": "authors"
                 }
               ],
+              "parts": [
+                "authors"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.authors`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 50
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "limit",
                   "page"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.authors`"
-              },
-              "parts": [
-                "authors"
-              ]
+              }
             }
           ]
         }
@@ -219,12 +216,14 @@ class Config {
       "fields": [
         {
           "name": "categories",
+          "title": "Categories",
           "type": "`$ARRAY`"
         },
         {
           "name": "total",
-          "short": "Total number of categories",
-          "type": "`$INTEGER`"
+          "title": "Total",
+          "type": "`$INTEGER`",
+          "short": "Total number of categories"
         }
       ],
       "name": "category",
@@ -234,7 +233,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/categories",
@@ -243,14 +241,16 @@ class Config {
                   "lit": "categories"
                 }
               ],
-              "select": {},
+              "parts": [
+                "categories"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.categories`"
               },
-              "parts": [
-                "categories"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -263,31 +263,36 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "title": "Author",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The author of the quote",
-          "type": "`$STRING`"
+          "short": "The author of the quote"
         },
         {
           "name": "category",
-          "short": "Category or theme of the quote",
-          "type": "`$STRING`"
+          "title": "Category",
+          "type": "`$STRING`",
+          "short": "Category or theme of the quote"
         },
         {
           "name": "id",
+          "title": "Id",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Unique identifier of the quote",
-          "type": "`$STRING`"
+          "short": "Unique identifier of the quote"
         },
         {
           "name": "source",
-          "short": "Source or origin of the quote",
-          "type": "`$STRING`"
+          "title": "Source",
+          "type": "`$STRING`",
+          "short": "Source or origin of the quote"
         },
         {
           "name": "text",
+          "title": "Text",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The text content of the quote",
-          "type": "`$STRING`"
+          "short": "The text content of the quote"
         }
       ],
       "id": {
@@ -301,36 +306,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "author",
-                    "orig": "author",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "category",
-                    "orig": "category",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 10,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/quotes",
@@ -339,6 +314,44 @@ class Config {
                   "lit": "quotes"
                 }
               ],
+              "parts": [
+                "quotes"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.quotes`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "author",
+                    "orig": "author",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "category",
+                    "orig": "category",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 10
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "author",
@@ -346,14 +359,7 @@ class Config {
                   "limit",
                   "page"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.quotes`"
-              },
-              "parts": [
-                "quotes"
-              ]
+              }
             }
           ]
         },
@@ -362,17 +368,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/quotes/{id}",
@@ -384,22 +379,33 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "quotes",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "quotes",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             },
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/quotes/random",
@@ -411,17 +417,19 @@ class Config {
                   "lit": "random"
                 }
               ],
-              "select": {
-                "$action": "random"
-              },
+              "parts": [
+                "quotes",
+                "random"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "quotes",
-                "random"
-              ]
+              "args": {},
+              "select": {
+                "$action": "random"
+              }
             }
           ]
         }

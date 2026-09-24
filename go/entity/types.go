@@ -1,7 +1,7 @@
 // Typed models for the Dictum SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,9 +14,6 @@ import (
 
 // Author is the typed data model for the author entity.
 type Author struct {
-	Bio *string `json:"bio,omitempty"`
-	Name string `json:"name"`
-	QuoteCount int `json:"quoteCount"`
 }
 
 // AuthorListMatch is the typed request payload for Author.ListTyped.
@@ -27,8 +24,6 @@ type AuthorListMatch struct {
 
 // Category is the typed data model for the category entity.
 type Category struct {
-	Categories *[]any `json:"categories,omitempty"`
-	Total *int `json:"total,omitempty"`
 }
 
 // CategoryListMatch is the typed request payload for Category.ListTyped.
@@ -39,11 +34,6 @@ type CategoryListMatch struct {
 
 // Quote is the typed data model for the quote entity.
 type Quote struct {
-	Author string `json:"author"`
-	Category *string `json:"category,omitempty"`
-	Id string `json:"id"`
-	Source *string `json:"source,omitempty"`
-	Text string `json:"text"`
 }
 
 // QuoteLoadMatch is the typed request payload for Quote.LoadTyped.

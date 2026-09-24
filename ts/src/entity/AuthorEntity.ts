@@ -19,7 +19,6 @@ import type {
   AuthorListMatch,
 } from '../DictumTypes'
 
-// TODO: needs Entity superclass
 class AuthorEntity extends DictumEntityBase<Author> {
 
   constructor(client: DictumSDK, entopts: any) {

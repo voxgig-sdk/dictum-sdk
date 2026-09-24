@@ -43,7 +43,7 @@ local authors, err = client:Author():list()
 if err then error(err) end
 
 for _, item in ipairs(authors) do
-  print(item["bio"])
+  print(item)
 end
 ```
 

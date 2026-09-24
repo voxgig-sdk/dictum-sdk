@@ -1,0 +1,86 @@
+# Entity: author
+
+main: kit: entity: author: {
+
+  alias: field: {}
+
+  fields: {
+    bio: {
+      h: "Bio"
+      n: "bio"
+      r: false
+      sh: "Brief biography of the author"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "Name of the author"
+      t: "`$STRING`"
+    }
+    quoteCount: {
+      h: "Quote Count"
+      n: "quoteCount"
+      r: true
+      sh: "Number of quotes by this author in the collection"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "author"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /authors"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/authors"
+          q: {
+            exist: [
+              "limit"
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "authors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.authors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
