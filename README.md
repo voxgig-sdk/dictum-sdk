@@ -106,11 +106,11 @@ local results, err = client:Author():list()
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
-| Python | `voxgig-sdk-dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
-| PHP | `voxgig-sdk/dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
+| Python | `voxgig-sdk-dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
+| PHP | `voxgig-sdk/dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/dictum-sdk/go` | `go get github.com/voxgig-sdk/dictum-sdk/go@latest` |
-| Ruby | `voxgig-sdk-dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
-| Lua | `voxgig-sdk-dictum` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
+| Ruby | `voxgig-sdk-dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
+| Lua | `voxgig-sdk-dictum-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dictum-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/dictum-sdk/go-cli` | `go install github.com/voxgig-sdk/dictum-sdk/go-cli/cmd/dictum@latest` |
 | Go MCP server | `github.com/voxgig-sdk/dictum-sdk/go-mcp` | `go get github.com/voxgig-sdk/dictum-sdk/go-mcp@latest` |
 
@@ -341,10 +341,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
